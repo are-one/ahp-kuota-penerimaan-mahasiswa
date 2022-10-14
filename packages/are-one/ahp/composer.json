@@ -1,0 +1,18 @@
+{
+    "name": "are-one/ahp",
+    "description": "Decision support system using Analytical Hierarchy Process (AHP) library in PHP",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "AreOne\\Ahp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Arwan Prianto Mangidi",
+            "email": "arwanpriantomangidi@gmail.com"
+        }
+    ],
+    "require": {}
+}
