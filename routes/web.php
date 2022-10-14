@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/dashboard', 'AdminController@dashboard');
+Route::get('/mahasiswa_aktif', 'MahasiswaController@index');
+Route::get('/dosen_aktif', 'DosenController@index');
+Route::get('/ruangan', 'RuanganController@index');
+Route::get('/pembobotan', 'BobotController@index');
