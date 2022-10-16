@@ -2,79 +2,134 @@
 
 @section('content')
 
-<div class="container">
-    <h6><i> Perbandingan Berpasangan</i></h6>
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <h6 class="mb-0">Perbandingan Berpasangan</h6>
+        <div class="col-sm-12 col-xl-2"><br><br><br><br>
+            <div class="bg-light rounded h-100 p-0">
+                <table class=" table">
+                    <tr>
+                        <th scope="col">Jml.Mahasiswa Aktif</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Jml.Mahasiswa TA</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Jml.Dosen Aktif</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Jumlah Ruangan</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Jml.Kapasitas Ruangan</th>
+                    </tr>
 
-    <div class="container-fluid pt-4 px-4">
-        <div class="row g-4">
-            <div class="col-sm-12 col-xl-7">
-                <div class="bg-light text-center rounded p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <div class="card-body">
-                            <table class="table table-bordered" id="users-table">
-                                <thead>
-                                    <tr class="text-center">
-                                        <th>Jum.Mahasiswa Aktif</th>
-                                        <th>Jum.Mahasiswa TA</th>
-                                        <th>Jum.Dosen Aktif</th>
-                                        <th>Jumlah Ruangan</th>
-                                        <th>Jum.Kapasitas Ruangan</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                </table>
             </div>
-            <div class="col-sm-12 col-xl-6">
-                <div class="bg-light text-center rounded p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">Salse & Revenue</h6>
-                        <a href="">Show All</a>
-                    </div>
-                    <canvas id="salse-revenue"></canvas>
-                </div>
+        </div>
+        <div class="col-sm-12 col-xl-7">
+            <div class="bg-light rounded h-100 p-2">
+                <h6 class="mb-4 text-light">.</h6>
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">Jml.Mahasiswa Aktif</th>
+                            <th scope="col">Jml.Mahasiswa TA</th>
+                            <th scope="col">Jml.Dosen Aktif</th>
+                            <th scope="col">Jumlah Ruangan</th>
+                            <th scope="col">Jml.Kapasitas Ruangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>500</td>
+                            <td>100</td>
+                            <td>50</td>
+                            <td>30</td>
+                            <td>40</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-12 col-xl-3">
+            <div class="bg-light rounded h-100 p-2">
+                <h6 class="mb-4 text-light">.</h6>
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">Jumlah Ruangan</th>
+                            <th scope="col">Jml.Kapasitas Ruangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>30</td>
+                            <td>40</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-
-
-    <!-- <div class="row justify-content-center">
-        <div class="col-md-2">
-
-        </div>
-
-        <div class="col-md-7">
-
-            <div class="card-body">
-                <table class="table table-bordered" id="users-table">
-                    <thead>
-                        <tr class="text-center">
-                            <th>Jum.Mahasiswa Aktif</th>
-                            <th>Jum.Mahasiswa TA</th>
-                            <th>Jum.Dosen Aktif</th>
-                            <th>Jumlah Ruangan</th>
-                            <th>Jum.Kapasitas Ruangan</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-
-        </div>
-        <div class="col-md-3">
-
-            <div class="card-body">
-                <table class="table table-bordered" id="users-table">
-                    <thead>
-                        <tr class="text-center">
-                            <th>Jml. Ruangan</th>
-                            <th>Jml. Kapasitas Ruangan</th>
-                        </tr>
-                    </thead>
-                </table>
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-2">
+            <div class="bg-light rounded h-100 p-0">
             </div>
         </div>
-    </div> -->
+        <div class="col-sm-12 col-xl-10">
+            <div class="bg-light rounded h-100 p-0">
+                <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-sync-alt"></i> Proses</button>
+            </div>
+        </div>
+    </div>
+    <div class="row g-4">
+        <h6 class="mb-0">Penjumlahan</h6>
+        <div class="col-sm-12 col-xl-7">
+            <div class="bg-light rounded h-100 p-0">
+                <h6 class="mb-4 text-light">.</h6>
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">Jml.Mahasiswa Aktif</th>
+                            <th scope="col">Jml.Mahasiswa TA</th>
+                            <th scope="col">Jml.Dosen Aktif</th>
+                            <th scope="col">Jumlah Ruangan</th>
+                            <th scope="col">Jml.Kapasitas Ruangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>500</td>
+                            <td>100</td>
+                            <td>50</td>
+                            <td>30</td>
+                            <td>40</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-12 col-xl-3">
+            <div class="bg-light rounded h-100 p-2">
+                <h6 class="mb-4 text-light">.</h6>
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">Jumlah Perbaris</th>
+                            <th scope="col">Prioritas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>30</td>
+                            <td>40</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection
