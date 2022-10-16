@@ -29,35 +29,24 @@
 
     <!-- Template Stylesheet -->
     <link href="/admin/css/style.css" rel="stylesheet">
-    <style>
-        footer {
-            /*
-                Footer tetap berada dibawah.
-            */
-            position: absolute;
-            bottom: 0;
-            width: 81%;
-            height: 70px;
-        }
-    </style>
 </head>
 
 <body>
     <div class="container-fluid position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <!-- <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
-        </div>
+        </div> -->
         <!-- Spinner End -->
 
 
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
-                <a href="#" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-light">SPK</h3>
+                <a href="index.html" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>DASHMIN</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
@@ -65,23 +54,17 @@
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">User</h6>
-                        <span>Admin</span>
+                        <h6 class="mb-0">Admin</h6>
+                        <span>Online</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-40">
-                    <a href="#" class="nav-item nav-link"><i class="fa fa-home me-2"></i>Home</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Data Kuota</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="#" class="dropdown-item">Mahasiswa Aktif</a>
-                            <a href="#" class="dropdown-item">Dosen Aktif</a>
-                        </div>
-                    </div>
-                    <a href="#" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Ruangan</a>
-                    <a href="#" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Data Bobot</a>
+                    <a href="/" class="nav-item nav-link"><i class="fa fa-home me-2"></i>Home</a>
+                    <a href="/prodi" class="nav-item nav-link"><i class="fa fa-laptop me-2"></i>Data Prodi</a>
+                    <a href="/ruangan" class="nav-item nav-link"><i class="fas fa-hotel me-2"></i>Ruangan</a>
+                    <a href="/pembobotan" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Data Bobot</a>
                     <a href="#" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Hasil Penilaian</a>
-                    <a href="#" class="nav-item nav-link"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+                    <a href="#" class="nav-item nav-link"><i class="fas fa-sign-out-alt me-2"></i>Logout</a>
                 </div>
             </nav>
         </div>
@@ -91,14 +74,9 @@
         <!-- Content Start -->
         <div class="content">
             <!-- Navbar Start -->
-            <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-2">
+            <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
                 <a href="#" class="sidebar-toggler flex-shrink-0" style="width: 40px; height: 40px;">
                     <i class="fa fa-bars"></i>
-                </a>
-                <a class="navbar-brand mx-4 mb-3" style="width: 30px; height: 35px;">
-                    <h4 class="text-primary">SPK-KUOTA MABA FMIPA</h4>
-                    <h6 class="text-primary">JL. H.E.A Mokodompit</h6>
-
                 </a>
 
 
@@ -113,48 +91,30 @@
                         <a href="#" class="nav-item nav-link">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Profile updated</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">New user added</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Password changed</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item text-center">See all notifications</a>
-                        </div>
                     </div>
                 </div>
             </nav>
             <!-- Navbar End -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row vh-200 bg-light justify-content-center mx-0 p-4">
+                    <!-- konten -->
+                    @yield('content')
+                    <!-- konten -->
+                </div>
+            </div>
 
-            <br>
-            <br>
-            <!-- konten -->
-            @yield('content')
-            <!-- konten -->
 
 
             <!-- Footer Start -->
-            <footer>
-                <div class="container-fluid ">
-                    <div class="rounded-top p-4">
-                        <div class="row">
-                            <div class="col-12 col-sm-6 text-center text-sm-start">
-                                &copy; <a href="#">Your Site Name</a>, All Right Reserved.
-                            </div>
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">Your Site Name</a>, All Right Reserved.
                         </div>
                     </div>
                 </div>
-            </footer>
+            </div>
             <!-- Footer End -->
         </div>
         <!-- Content End -->

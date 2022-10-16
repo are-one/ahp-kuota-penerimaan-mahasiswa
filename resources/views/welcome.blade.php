@@ -79,9 +79,9 @@
             </div>
 
             <div class="links">
-                <a href="/mahasiswa_aktif" class="btn btn-success btn-lg"><i class="fas fa-users"></i> Open Data Kuota</a>
+                <a href="/prodi" class="btn btn-success btn-lg"><i class="fas fa-users"></i> Open Data Kuota</a>
                 <a href="" class="btn btn-danger btn-lg"><i class="fas fa-edit"></i></i> Open Input Nilai Kuota</a>
-                <a href="" class="btn btn-primary btn-lg"><i class="fas fa-book"></i> Hasil/Laporan</a>
+                <a href="" class="btn btn-primary btn-lg"><i class="fas fa-book"></i> Hasil/Laporan</a><br><br>
                 <a href="" class="btn btn-info btn-lg"><i class="fas fa-chalkboard-teacher"></i> Input Data Nilai Kuota</a>
                 <a href="" class="btn btn-warning btn-lg"><i class="fas fa-newspaper"></i> Open Perhitungan AHP</a>
             </div>

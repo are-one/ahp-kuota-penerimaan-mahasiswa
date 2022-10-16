@@ -1,21 +1,19 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">Kapasitas Ruangan</div>
-
-                <div class="card-body">
-
-                    <table class="table table-bordered" id="users-table">
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4"><i>Data Ruangan</i></h6>
+                <div class="table-responsive">
+                    <table class="table text-center" id="prodi-table">
                         <thead>
-                            <tr class="text-center">
-                                <th width="40">No</th>
-                                <th>Ruangan</th>
-                                <th>Kapasitas</th>
-                                <th>Aksi</th>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Ruangan</th>
+                                <th scope="col">Kapasitas</th>
+                                <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                     </table>
