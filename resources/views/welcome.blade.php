@@ -74,10 +74,12 @@
         @endif
 
         <div class="content">
+            <span class="login100-form-logo">
+                <img src="/admin/img/uho.png" alt="" srcset="" height="150" width="150">
+            </span><br>
             <div class="title m-b-md">
                 <h1><b> SPK-Kuota MABA FMIPA</b></h1>
             </div>
-
             <div class="links">
                 <a href="/prodi" class="btn btn-success btn-lg"><i class="fas fa-users"></i> Open Data Kuota</a>
                 <a href="" class="btn btn-danger btn-lg"><i class="fas fa-edit"></i></i> Open Input Nilai Kuota</a>

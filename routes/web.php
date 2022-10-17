@@ -20,3 +20,8 @@ Route::get('/prodi', 'ProdiController@index');
 Route::get('/dosen_aktif', 'DosenController@index');
 Route::get('/ruangan', 'RuanganController@index');
 Route::get('/pembobotan', 'BobotController@index');
+Route::get('/hasil_penilaian', 'HasilpenilaianController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
