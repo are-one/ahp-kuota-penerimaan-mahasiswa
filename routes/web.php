@@ -17,6 +17,13 @@ Route::get('/', function () {
 
 Route::get('/dashboard', 'AdminController@dashboard');
 Route::get('/prodi', 'ProdiController@index');
+Route::get('/prodi/create', 'ProdiController@create');
 Route::get('/dosen_aktif', 'DosenController@index');
 Route::get('/ruangan', 'RuanganController@index');
+Route::get('/ruangan/create', 'RuanganController@create');
 Route::get('/pembobotan', 'BobotController@index');
+Route::get('/hasil_penilaian', 'HasilpenilaianController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

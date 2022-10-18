@@ -10,4 +10,9 @@ class ProdiController extends Controller
     {
         return view('prodi.index');
     }
+
+    public function create()
+    {
+        return view('prodi.create');
+    }
 }

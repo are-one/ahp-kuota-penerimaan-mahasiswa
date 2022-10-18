@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>DASHMIN - Bootstrap Admin Template</title>
+    <title>@yield('title')</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -63,7 +63,7 @@
                     <a href="/prodi" class="nav-item nav-link"><i class="fa fa-laptop me-2"></i>Data Prodi</a>
                     <a href="/ruangan" class="nav-item nav-link"><i class="fas fa-hotel me-2"></i>Ruangan</a>
                     <a href="/pembobotan" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Data Bobot</a>
-                    <a href="#" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Hasil Penilaian</a>
+                    <a href="/hasil_penilaian" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Hasil Penilaian</a>
                     <a href="#" class="nav-item nav-link"><i class="fas fa-sign-out-alt me-2"></i>Logout</a>
                 </div>
             </nav>
@@ -95,13 +95,10 @@
                 </div>
             </nav>
             <!-- Navbar End -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row vh-200 bg-light justify-content-center mx-0 p-4">
-                    <!-- konten -->
-                    @yield('content')
-                    <!-- konten -->
-                </div>
-            </div>
+            <!-- konten -->
+            @yield('content')
+            <!-- konten -->
+
 
 
 

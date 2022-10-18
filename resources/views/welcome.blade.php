@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Portal Sistem Pakar Maba FMIPA</title>
+    <title>SPK | Dashboard</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
@@ -74,10 +74,12 @@
         @endif
 
         <div class="content">
+            <span class="login100-form-logo">
+                <img src="/admin/img/uho.png" alt="" srcset="" height="150" width="150">
+            </span><br>
             <div class="title m-b-md">
                 <h1><b> SPK-Kuota MABA FMIPA</b></h1>
             </div>
-
             <div class="links">
                 <a href="/prodi" class="btn btn-success btn-lg"><i class="fas fa-users"></i> Open Data Kuota</a>
                 <a href="" class="btn btn-danger btn-lg"><i class="fas fa-edit"></i></i> Open Input Nilai Kuota</a>
