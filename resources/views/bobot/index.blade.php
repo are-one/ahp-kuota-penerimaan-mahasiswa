@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+@section ('title', 'SPK | Pembobotan')
 @section('content')
 <div class="container-fluid pt-4 px-4">
     <h6 class="mb-0"><i>Perbandingan Berpasangan</i></h6>
