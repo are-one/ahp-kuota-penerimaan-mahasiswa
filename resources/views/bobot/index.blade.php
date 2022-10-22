@@ -113,36 +113,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php($prioritas = [])
-                            @csrf
                             {{-- PERULANGAN BARIS --}}
                             @foreach ($kriteria as $kode_baris => $nama)
                                 <tr>
                                     <th scope="col">{{ $nama }}</th>
 
                                     {{-- PERULANGAN KOLOM --}}
-                                    @php($jumlah_kriteria = 0)
-                                    @foreach ($matriks[$kode_baris] as $kode_kolom => $nilai)
-                                        <?php
-                                        if (isset($total_kolom[$kode_kolom])) {
-                                            $nilai_kriteria = $nilai / $total_kolom[$kode_kolom];
-                                        } else {
-                                            $nilai_kriteria = $nilai;
-                                        }
-                                        
-                                        $jumlah_kriteria += $nilai_kriteria;
-                                        ?>
-
+                                    @foreach ($matriks_kriteria[$kode_baris] as $kode_kolom => $nilai)
                                         <td style="vertical-align: middle">
-                                            {{ number_format("$nilai_kriteria", 2, ',', '.') }}
+                                            {{ number_format("$nilai", 2, ',', '.') }}
                                         </td>
                                     @endforeach
                                     <td>
-                                        <b>{{ round($jumlah_kriteria, 2) }}</b>
+                                        <b>{{ round($jumlah_matriks_kriteria[$kode_baris], 2) }}</b>
                                     </td>
                                     <td>
-                                        @php($prioritas[$kode_baris] = round($jumlah_kriteria / count($kriteria), 2))
-                                        <b>{{ $prioritas[$kode_baris] }}</b>
+                                        <b>{{ round($prioritas_matriks_kriteria[$kode_baris], 2) }}</b>
                                     </td>
 
                                 </tr>
@@ -172,31 +158,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @csrf
                             {{-- PERULANGAN BARIS --}}
                             @foreach ($kriteria as $kode_baris => $nama)
                                 <tr>
                                     <th scope="col">{{ $nama }}</th>
 
                                     {{-- PERULANGAN KOLOM --}}
-                                    @php($jumlah_kriteria_baru = 0)
-                                    @foreach ($matriks[$kode_baris] as $kode_kolom => $nilai)
-                                        <?php
-                                        if (isset($total_kolom[$kode_kolom])) {
-                                            $nilai_kriteria_baru = $nilai * $prioritas[$kode_kolom];
-                                        } else {
-                                            $nilai_kriteria_baru = $nilai;
-                                        }
-                                        
-                                        $jumlah_kriteria_baru += $nilai_kriteria_baru;
-                                        ?>
-
+                                    @foreach ($matriks_kriteria_2[$kode_baris] as $kode_kolom => $nilai_kriteria_2)
                                         <td style="vertical-align: middle">
-                                            {{ number_format("$nilai_kriteria_baru", 2, ',', '.') }}
+                                            {{ number_format("$nilai_kriteria_2", 2, ',', '.') }}
                                         </td>
                                     @endforeach
                                     <td>
-                                        <b>{{ round($jumlah_kriteria_baru, 2) }}</b>
+                                        <b>{{ round($jumlah_matriks_kriteria_2[$kode_baris], 2) }}</b>
                                     </td>
 
                                 </tr>
