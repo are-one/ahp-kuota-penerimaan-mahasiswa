@@ -31,6 +31,11 @@ class BobotController extends Controller
 
         $matriks = ($modelAhp->generate_matriks_perbandingan_berpasangan());
         $total_kolom = [];
+        $matriks_kriteria = [];
+        $jumlah_matriks_kriteria = [];
+        $matriks_kriteria_2 = [];
+        $jumlah_matriks_kriteria_2 = [];
+        
         
         if($request->method() == "POST"){
             $data_nilai = $request->input('matriks');
