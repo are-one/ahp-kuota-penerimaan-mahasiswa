@@ -35,6 +35,7 @@ class BobotController extends Controller
         $jumlah_matriks_kriteria = [];
         $matriks_kriteria_2 = [];
         $jumlah_matriks_kriteria_2 = [];
+        $prioritas_matriks_kriteria = [];
         
         
         if($request->method() == "POST"){

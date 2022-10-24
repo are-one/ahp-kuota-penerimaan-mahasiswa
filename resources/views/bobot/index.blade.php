@@ -104,7 +104,9 @@
                     <table class="table text-center table-bordered" id="banding-table">
                         <thead>
                             <tr>
-                                <th scope="col"></th>
+                                @if (isset($matriks_kriteria[$kode_baris]))
+                                    <th scope="col"></th>
+                                @endif
                                 @foreach ($kriteria as $kode => $nama)
                                     <th scope="col">{{ $nama }}</th>
                                 @endforeach
@@ -114,25 +116,33 @@
                         </thead>
                         <tbody>
                             {{-- PERULANGAN BARIS --}}
-                            @foreach ($kriteria as $kode_baris => $nama)
-                                <tr>
-                                    <th scope="col">{{ $nama }}</th>
+                            @if (isset($matriks_kriteria[$kode_baris]))
+                                @foreach ($kriteria as $kode_baris => $nama)
+                                    <tr>
+                                        <th scope="col">{{ $nama }}</th>
 
-                                    {{-- PERULANGAN KOLOM --}}
-                                    @foreach ($matriks_kriteria[$kode_baris] as $kode_kolom => $nilai)
-                                        <td style="vertical-align: middle">
-                                            {{ number_format("$nilai", 2, ',', '.') }}
+                                        {{-- PERULANGAN KOLOM --}}
+                                        @foreach ($matriks_kriteria[$kode_baris] as $kode_kolom => $nilai)
+                                            <td style="vertical-align: middle">
+                                                {{ number_format("$nilai", 2, ',', '.') }}
+                                            </td>
+                                        @endforeach
+                                        <td>
+                                            <b>{{ round($jumlah_matriks_kriteria[$kode_baris], 2) }}</b>
                                         </td>
-                                    @endforeach
-                                    <td>
-                                        <b>{{ round($jumlah_matriks_kriteria[$kode_baris], 2) }}</b>
-                                    </td>
-                                    <td>
-                                        <b>{{ round($prioritas_matriks_kriteria[$kode_baris], 2) }}</b>
-                                    </td>
+                                        <td>
+                                            <b>{{ round($prioritas_matriks_kriteria[$kode_baris], 2) }}</b>
+                                        </td>
 
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="{{ count($kriteria) + 1}}">
+                                        Tidak ada data perhitungan
+                                    </td>
                                 </tr>
-                            @endforeach
+                            @endif
                         </tbody>
                     </table>
 
@@ -150,7 +160,10 @@
                     <table class="table text-center table-bordered" id="banding-table">
                         <thead>
                             <tr>
-                                <th scope="col"></th>
+                                @if (isset($matriks_kriteria_2[$kode_baris]))
+                                    <th scope="col"></th>
+                                @endif
+
                                 @foreach ($kriteria as $kode => $nama)
                                     <th scope="col">{{ $nama }}</th>
                                 @endforeach
@@ -159,22 +172,31 @@
                         </thead>
                         <tbody>
                             {{-- PERULANGAN BARIS --}}
-                            @foreach ($kriteria as $kode_baris => $nama)
-                                <tr>
-                                    <th scope="col">{{ $nama }}</th>
+                            @if (isset($matriks_kriteria_2[$kode_baris]))
+                                @foreach ($kriteria as $kode_baris => $nama)
 
-                                    {{-- PERULANGAN KOLOM --}}
-                                    @foreach ($matriks_kriteria_2[$kode_baris] as $kode_kolom => $nilai_kriteria_2)
-                                        <td style="vertical-align: middle">
-                                            {{ number_format("$nilai_kriteria_2", 2, ',', '.') }}
+                                    <tr>
+                                        <th scope="col">{{ $nama }}</th>
+
+                                        {{-- PERULANGAN KOLOM --}}
+                                        @foreach ($matriks_kriteria_2[$kode_baris] as $kode_kolom => $nilai_kriteria_2)
+                                            <td style="vertical-align: middle">
+                                                {{ number_format("$nilai_kriteria_2", 2, ',', '.') }}
+                                            </td>
+                                        @endforeach
+                                        <td>
+                                            <b>{{ round($jumlah_matriks_kriteria_2[$kode_baris], 2) }}</b>
                                         </td>
-                                    @endforeach
-                                    <td>
-                                        <b>{{ round($jumlah_matriks_kriteria_2[$kode_baris], 2) }}</b>
-                                    </td>
 
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="{{ count($kriteria) + 1}}">
+                                        Tidak ada data perhitungan
+                                    </td>
                                 </tr>
-                            @endforeach
+                            @endif
                         </tbody>
                     </table>
 
