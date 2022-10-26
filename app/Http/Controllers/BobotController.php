@@ -20,11 +20,19 @@ class BobotController extends Controller
         ];
 
         $sub_kriteria = [
-            'K01' => [50, 40, 30, 20,10],
-            'K02' => [50, 40, 30, 20,10],
-            'K03' => [50, 40, 30, 20,10],
-            'K04' => [50, 40, 30, 20,10],
-            'K05' => [50, 40, 30, 20,10]
+            'K01' => [50, 40, 30, 20, 10],
+            'K02' => [50, 40, 30, 20, 10],
+            'K03' => [50, 40, 30, 20, 10],
+            'K04' => [50, 40, 30, 20, 10],
+            'K05' => [50, 40, 30, 20, 10]
+        ];
+
+        $nilai_sub_kriteria = [
+            'K01' => 40,
+            'K02' => 50,
+            'K03' => 40,
+            'K04' => 40,
+            'K05' => 50
         ];
 
         $modelAhp = new Ahp($kriteria, $sub_kriteria);
@@ -36,9 +44,9 @@ class BobotController extends Controller
         $matriks_kriteria_2 = [];
         $jumlah_matriks_kriteria_2 = [];
         $prioritas_matriks_kriteria = [];
-        
-        
-        if($request->method() == "POST"){
+
+
+        if ($request->method() == "POST") {
             $data_nilai = $request->input('matriks');
             $matriks_perbandingan = $modelAhp->set_nilai_matriks_perbadingan_berpasanagan($data_nilai);
 
@@ -46,7 +54,7 @@ class BobotController extends Controller
             $total_kolom = $matriks_perbandingan['total_kolom'];
 
             $data_matriks_kriteria = $modelAhp->set_nilai_matriks_kriteria($matriks, $total_kolom);
-            
+
             $matriks_kriteria = $data_matriks_kriteria['matriks_kriteria'];
             $jumlah_matriks_kriteria = $data_matriks_kriteria['jumlah_kriteria'];
             $prioritas_matriks_kriteria = $data_matriks_kriteria['nilai_prioritas'];
@@ -55,10 +63,10 @@ class BobotController extends Controller
 
             $matriks_kriteria_2 = $data_matriks_kriteria_2['matriks_kriteria_2'];
             $jumlah_matriks_kriteria_2 = $data_matriks_kriteria_2['jumlah_matriks_kriteria_2'];
-
         }
-
-        return view('bobot.index',[
+        //dd($jumlah_matriks_kriteria_2);
+        return view('bobot.index', [
+            'nilai_sub_kriteria' => $nilai_sub_kriteria,
             'kriteria' => $kriteria,
             'matriks' => $matriks,
             'total_kolom' => $total_kolom,
