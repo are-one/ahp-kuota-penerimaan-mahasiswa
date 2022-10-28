@@ -1,16 +1,13 @@
 @extends('layouts.master')
 @section('title', 'SPK | Pembobotan')
 @section('content')
-<div class="container-fluid pt-4 px-4">
-    <h6 class="mb-0"><i>Perbandingan Berpasangan</i></h6>
-</div>
 
 <div class="container-fluid pt-4 px-4">
     <form action="" method="POST">
+        <h6><i>Perbandingan Berpasangan</i></h6>
         <div class="row g-4">
             <div class="col-sm-12 col-xl-9">
                 <div class="bg-light rounded p-0">
-
                     <table class="table text-center table-bordered" id="banding-table">
                         <thead>
                             <tr>
@@ -50,12 +47,11 @@
                                 </td>
                                 @endforeach
                             </tr>
-
                         </tbody>
                     </table>
-
                 </div>
             </div>
+
             <div class="col-sm-12 col-xl-3">
                 <div class="bg-light rounded p-0">
                     <table class="table text-center" id="banding2-table">
@@ -75,31 +71,24 @@
                 </div>
             </div>
         </div>
+
         <div class="row g-4">
-            <div class="col-sm-12 col-xl-2">
+            <div class="col-sm-12 col-xl-12 text-center">
                 <div class="h-100 p-0">
-                </div>
-            </div>
-            <div class="col-sm-12 col-xl-10">
-                <div class="h-100 p-0">
-                    <button type="submit" name="proses" class="btn btn-md btn-success"><i class="fas fa-sync-alt"></i>
-                        Proses</button>
-                    <button type="submit" name="simpan" class="btn btn-md btn-primary"><i class="fas fa-save"></i>
-                        Simpan</button>
+                    <button type="submit" name="simpan" class="btn btn-sm btn-success"><i class="fas fa-sync-alt"></i>
+                        Proses Data</button>
                 </div>
             </div>
         </div>
     </form>
 </div>
+
 <div class="container-fluid pt-4 px-4">
-    <h6 class="mb-0"><i>Matriks Nilai Kriteria</i></h6>
-</div>
-<div class="container-fluid pt-4 px-4">
+    <h6><i>Matriks Nilai Kriteria</i></h6>
     <div class="row g-4">
         <div class="col-sm-12 col-xl-12">
             <div class="bg-light rounded p-0">
-
-                <table class="table text-center table-bordered" id="banding-table">
+                <table class="table text-center table-bordered">
                     <thead>
                         <tr>
                             @if (isset($matriks_kriteria[$kode_baris]))
@@ -118,7 +107,6 @@
                         @foreach ($kriteria as $kode_baris => $nama)
                         <tr>
                             <th scope="col">{{ $nama }}</th>
-
                             {{-- PERULANGAN KOLOM --}}
                             @foreach ($matriks_kriteria[$kode_baris] as $kode_kolom => $nilai)
                             <td style="vertical-align: middle">
@@ -131,37 +119,32 @@
                             <td>
                                 <b>{{ round($prioritas_matriks_kriteria[$kode_baris], 2) }}</b>
                             </td>
-
                         </tr>
                         @endforeach
                         @else
                         <tr>
-                            <td colspan="{{ count($kriteria) + 1}}">
+                            <td colspan="{{ count($kriteria) + 2}}">
                                 Tidak ada data perhitungan
                             </td>
                         </tr>
                         @endif
                     </tbody>
                 </table>
-
-
             </div>
         </div>
-
     </div>
 </div>
+
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
         <div class="col-sm-12 col-xl-12">
             <div class="bg-light rounded p-0">
-
-                <table class="table text-center table-bordered" id="banding-table">
+                <table class="table text-center table-bordered">
                     <thead>
                         <tr>
                             @if (isset($matriks_kriteria_2[$kode_baris]))
                             <th scope="col"></th>
                             @endif
-
                             @foreach ($kriteria as $kode => $nama)
                             <th scope="col">{{ $nama }}</th>
                             @endforeach
@@ -172,10 +155,8 @@
                         {{-- PERULANGAN BARIS --}}
                         @if (isset($matriks_kriteria_2[$kode_baris]))
                         @foreach ($kriteria as $kode_baris => $nama)
-
                         <tr>
                             <th scope="col">{{ $nama }}</th>
-
                             {{-- PERULANGAN KOLOM --}}
                             @foreach ($matriks_kriteria_2[$kode_baris] as $kode_kolom => $nilai_kriteria_2)
                             <td style="vertical-align: middle">
@@ -185,7 +166,6 @@
                             <td>
                                 <b>{{ round($jumlah_matriks_kriteria_2[$kode_baris], 2) }}</b>
                             </td>
-
                         </tr>
                         @endforeach
                         @else
@@ -197,41 +177,15 @@
                         @endif
                     </tbody>
                 </table>
-
-
             </div>
         </div>
-        {{-- <div class="col-sm-12 col-xl-2">
-                <div class="bg-light rounded px-0">
-                    <table class="table text-center" id="banding2-table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Jumlah Perbaris</th>
-                                <th scope="col" width="10%">Prioritas</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>30</td>
-                                <td>40</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                </div>
-            </div> --}}
+    </div><br>
 
 
-
-
-
-
-
-    </div>
+    <h6><i>Perhitungan Rasio Konsistensi</i></h6>
     <div class="row g-4">
         <div class="col-sm-12 col-xl-12">
             <div class="bg-light rounded p-0">
-
                 <table class="table text-center table-bordered" id="banding-table">
                     <thead>
                         <tr>
@@ -254,8 +208,8 @@
                         </tr>
                         @endforeach
                         <tr>
-                            <td colspan="3">Jumlah</td>
-                            <td>{{$jumlah}}</td>
+                            <td colspan="3"><b>Jumlah</b></td>
+                            <td><b>{{$jumlah}}</b></td>
                         </tr>
                         @else
                         <tr>
@@ -264,18 +218,17 @@
                             </td>
                         </tr>
                         @endif
-
                     </tbody>
                 </table>
-
             </div>
         </div>
-    </div>
+    </div><br>
 
-    <div class="row g-4">
-        <div class="col-sm-12 col-xl-12">
+
+    <h6><i>Bobot Masing-Masing Kriteria</i></h6>
+    <div class="row justify-content-center g-4">
+        <div class="col-sm-12 col-xl-6">
             <div class="bg-light rounded p-0">
-
                 <table class="table text-center table-bordered" id="banding-table">
                     <thead>
                         <tr>
@@ -298,21 +251,18 @@
                             </td>
                         </tr>
                         @endif
-
                     </tbody>
                 </table>
-
             </div>
         </div>
-    </div>
+    </div><br>
 
-    <div class="row g-4">
-        <div class="col-sm-12 col-xl-12">
+    <h6><i>Nilai Prioritas Kriteria</i></h6>
+    <div class="row justify-content-center g-4">
+        <div class="col-sm-12 col-xl-6">
             <div class="bg-light rounded p-0">
-
                 <table class="table text-center table-bordered" id="banding-table">
                     <thead>
-
                         <tr>
                             <th>Kriteria</th>
                             <th>Nilai Sub Kriteria</th>
@@ -323,21 +273,17 @@
                         <tr>
                             <td>{{$nama}}</td>
                             <td>{{$nilai_sub_kriteria[$kode]}}</td>
-
                         </tr>
                         @endforeach
-
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>
 
-    <div class="row g-4">
+    <div class="row justify-content-center g-4">
         <div class="col-sm-12 col-xl-12">
             <div class="bg-light rounded p-4">
-
                 <table class="" style="border:none" id="banding-table">
                     <tbody>
                         @php($text_penjumlahan_kriteria = [])
@@ -355,17 +301,13 @@
                             <td></td>
                             <td>&nbsp;=</td>
                             <td>&nbsp;{{$nilai_sub_kriteria[$kode]}} * {{round($prioritas_matriks_kriteria[$kode], 2)}}</td>
-
                         </tr>
                         <tr>
                             <td></td>
                             <td>&nbsp;=</td>
                             <td>&nbsp;{{round($nilai_sub_kriteria[$kode]*$prioritas_matriks_kriteria[$kode],2)}}</td>
-
                         </tr>
-
                         @endforeach
-
                         <tr>
                             <td>Nilai Akhir</td>
                             <td>&nbsp;=</td>
@@ -375,16 +317,12 @@
                             <td></td>
                             <td>&nbsp;=</td>
                             <td>&nbsp;{{implode(" + ", $angka_penjumlahan_kriteria)}}</td>
-
                         </tr>
                         <tr>
                             <td></td>
                             <td>&nbsp;=</td>
                             <td>&nbsp; {{array_sum($angka_penjumlahan_kriteria)}}</td>
-
                         </tr>
-
-
                         @else
                         <tr>
                             <td colspan="{{ count($kriteria) + 1}}">
@@ -392,12 +330,22 @@
                             </td>
                         </tr>
                         @endif
-
-
-
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div><br>
 
+
+    <div class="row justify-content-center  g-4">
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-light text-center rounded p-4">
+                <h4 style="font-family: cambria"><b>Kesimpulan</b></h4>
+                @if(count($prioritas_matriks_kriteria) > 0)
+                <p>Presentase hasil keputusan akhir yang diperoleh melalui perhitungan AHP yaitu sebesar <b>{{array_sum($angka_penjumlahan_kriteria)}}</b></p>
+                @else
+                <p>Tidak Ada Data Perhitungan</p>
+                @endif
             </div>
         </div>
     </div>
