@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/login', function () {
     return view('admin.login');
 })->name('login');
@@ -23,6 +19,9 @@ Route::post('/postlogin', 'LoginController@postlogin')->name('postlogin');
 Route::get('/logout', 'LoginController@logout')->name('logout');
 
 Route::group(['middleware' => ['auth:web']], function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
     Route::get('/dashboard', 'AdminController@dashboard');
     Route::get('/prodi/json', 'ProdiController@json');
     Route::resource('/prodi', 'ProdiController');
