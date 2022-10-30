@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Waktu pembuatan: 29 Okt 2022 pada 09.23
--- Versi server: 5.7.24
--- Versi PHP: 7.4.21
+-- Host: 127.0.0.1
+-- Generation Time: Oct 30, 2022 at 01:35 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -24,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kriteria`
+-- Table structure for table `kriteria`
 --
 
 CREATE TABLE `kriteria` (
@@ -36,7 +37,39 @@ CREATE TABLE `kriteria` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `prodi`
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prodi`
 --
 
 CREATE TABLE `prodi` (
@@ -44,10 +77,19 @@ CREATE TABLE `prodi` (
   `nama_prodi` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `prodi`
+--
+
+INSERT INTO `prodi` (`kode_prodi`, `nama_prodi`) VALUES
+('F1A1', 'MATEMATIKA'),
+('F1A2', 'STATISTIKA'),
+('F1A3', 'ILMU KOMPUTER');
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `prodi_has_kriteria`
+-- Table structure for table `prodi_has_kriteria`
 --
 
 CREATE TABLE `prodi_has_kriteria` (
@@ -61,7 +103,7 @@ CREATE TABLE `prodi_has_kriteria` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tahun`
+-- Table structure for table `tahun`
 --
 
 CREATE TABLE `tahun` (
@@ -69,24 +111,59 @@ CREATE TABLE `tahun` (
   `tahun_akademik` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(2, 'admin', 'administration@gmail.com', '$2y$10$CUGOPparpM4I9b8GJaSdMuU3mLvO2UpNAUkzMLiAELbgXbBHjm1G2', '3qz1uJ9CxH0hrmVeTTosAmkcg07CalnJmHFCsOkYNpta3OiLyLu5u1CFy2OJ', '2022-10-29 23:02:46', '2022-10-29 23:02:46');
+
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `kriteria`
+-- Indexes for table `kriteria`
 --
 ALTER TABLE `kriteria`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `prodi`
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `prodi`
 --
 ALTER TABLE `prodi`
   ADD PRIMARY KEY (`kode_prodi`);
 
 --
--- Indeks untuk tabel `prodi_has_kriteria`
+-- Indexes for table `prodi_has_kriteria`
 --
 ALTER TABLE `prodi_has_kriteria`
   ADD PRIMARY KEY (`kode_prodi`,`kriteria_id`,`kriteria_id1`,`tahun_id`),
@@ -96,18 +173,41 @@ ALTER TABLE `prodi_has_kriteria`
   ADD KEY `fk_prodi_has_kriteria_prodi1_idx` (`kode_prodi`);
 
 --
--- Indeks untuk tabel `tahun`
+-- Indexes for table `tahun`
 --
 ALTER TABLE `tahun`
   ADD PRIMARY KEY (`id_tahun`),
   ADD UNIQUE KEY `tahun_akademik_UNIQUE` (`tahun_akademik`);
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `prodi_has_kriteria`
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `prodi_has_kriteria`
 --
 ALTER TABLE `prodi_has_kriteria`
   ADD CONSTRAINT `fk_prodi_has_kriteria_kriteria1` FOREIGN KEY (`kriteria_id`) REFERENCES `kriteria` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
