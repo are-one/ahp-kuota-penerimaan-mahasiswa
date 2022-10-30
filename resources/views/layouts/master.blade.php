@@ -29,6 +29,7 @@
 
     <!-- Template Stylesheet -->
     <link href="/admin/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -54,6 +55,7 @@
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
+
                         <h6 class="mb-0">Admin</h6>
                         <span>Online</span>
                     </div>
@@ -64,7 +66,14 @@
                     <a href="/ruangan" class="nav-item nav-link"><i class="fas fa-hotel me-2"></i>Ruangan</a>
                     <a href="/pembobotan" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Data Bobot</a>
                     <a href="/hasil_penilaian" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Hasil Penilaian</a>
-                    <a href="#" class="nav-item nav-link"><i class="fas fa-sign-out-alt me-2"></i>Logout</a>
+                    <a href="{{ route('logout') }}" class="nav-item nav-link" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
+                        <form id="logout-form" action="{{ route('logout') }}" style="display: none;">
+                            @csrf
+                        </form>
+                    </a>
+
                 </div>
             </nav>
         </div>
@@ -134,6 +143,14 @@
 
     <!-- Template Javascript -->
     <script src="/admin/js/main.js"></script>
+    <!-- jQuery -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <!-- DataTables -->
+    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!-- App scripts -->
+    @stack('scripts')
 </body>
 
 </html>

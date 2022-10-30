@@ -11,13 +11,13 @@
                 <div class="table-responsive">
                     <div class="card-body">
 
-                        {{Form::open(['url' => 'prodi'])}}
+                        {{ Form::model($prodi,['url'=>'prodi/'.$prodi->kode_prodi,'method'=>'PUT'])}}
                         @csrf
 
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-2 col-form-label text-md-right">Kode Prodi</label>
                             <div class="col-md-3">
-                                {{Form::text('kode_prodi',null,['class' => 'form-control','placeholder' => 'Kode Prodi'])}}
+                                {{ Form::text('kode_prodi',null,['class'=>'form-control','placeholder'=>'Kode Prodi'])}}
                             </div>
                         </div><br>
 

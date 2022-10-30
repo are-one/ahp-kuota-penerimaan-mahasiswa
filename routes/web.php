@@ -15,16 +15,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', 'AdminController@dashboard');
-Route::get('/prodi', 'ProdiController@index');
-Route::get('/prodi/create', 'ProdiController@create');
-Route::get('/dosen_aktif', 'DosenController@index');
-Route::get('/ruangan', 'RuanganController@index');
-Route::get('/ruangan/create', 'RuanganController@create');
-Route::get('/pembobotan', 'BobotController@index');
-Route::post('/pembobotan', 'BobotController@index');
-Route::get('/hasil_penilaian', 'HasilpenilaianController@index');
+Route::get('/login', function () {
+    return view('admin.login');
+})->name('login');
 
-Auth::routes();
+Route::post('/postlogin', 'LoginController@postlogin')->name('postlogin');
+Route::get('/logout', 'LoginController@logout')->name('logout');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth:web']], function () {
+    Route::get('/dashboard', 'AdminController@dashboard');
+    Route::get('/prodi/json', 'ProdiController@json');
+    Route::resource('/prodi', 'ProdiController');
+    Route::get('/prodi/create', 'ProdiController@create');
+    Route::get('/dosen_aktif', 'DosenController@index');
+    Route::get('/ruangan', 'RuanganController@index');
+    Route::get('/ruangan/create', 'RuanganController@create');
+    Route::get('/pembobotan', 'BobotController@index');
+    Route::post('/pembobotan', 'BobotController@index');
+    Route::get('/hasil_penilaian', 'HasilpenilaianController@index');
+});

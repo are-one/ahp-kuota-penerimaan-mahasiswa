@@ -11,28 +11,16 @@
             <div class="bg-light rounded vh-100 p-4">
                 <a href="/prodi/create" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Tambah Data Baru</a>
                 <hr>
+                @include('alert')
                 <div class="table-responsive">
-                    <table class="table text-center" id="prodi-table">
+                    <table class="table table-bordered text-center" id="prodi-table">
                         <thead>
                             <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Kode Prodi</th>
+                                <th scope="col" width="100">Kode Prodi</th>
                                 <th scope="col">Nama Prodi</th>
-                                <th scope="col">Mahasiswa Aktif</th>
-                                <th scope="col">Dosen Aktif</th>
-                                <th scope="col">Aksi</th>
+                                <th scope="col" width="70">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>F1A3</td>
-                                <td>Ilmu Komputer</td>
-                                <td>340</td>
-                                <td>20</td>
-                                <td>123</td>
-                            </tr>
-                        </tbody>
                     </table>
                 </div>
             </div>
@@ -40,3 +28,29 @@
     </div>
 </div>
 @endsection
+
+
+@push('scripts')
+<script>
+    $(function() {
+        $('#prodi-table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '/prodi/json',
+            columns: [{
+                    data: 'kode_prodi',
+                    name: 'kode_prodi'
+                },
+                {
+                    data: 'nama_prodi',
+                    name: 'nama_prodi'
+                },
+                {
+                    data: 'action',
+                    name: 'action'
+                }
+            ]
+        });
+    });
+</script>
+@endpush
