@@ -55,19 +55,20 @@ class ProdiController extends Controller
     public function update(Request $request, $kode_prodi)
     {
         $request->validate([
-            'nama_prodi' => 'required|min:6',
+            'kode_prodi' => 'required|unique:prodi|min:4',
+            'nama_prodi' => 'required|min:6'
         ]);
 
 
         $prodi = prodi::where('kode_prodi', '=', $kode_prodi);
         $prodi->update($request->except('_method', '_token'));
-        return redirect('/prodi')->with('status', 'Data Prodi Berhasil Di Update');;
+        return redirect('/prodi')->with('status', 'Data Prodi Berhasil Di Update');
     }
 
     public function destroy($kode_prodi)
     {
         $prodi = prodi::where('kode_prodi', $kode_prodi);
         $prodi->delete();
-        return redirect('/prodi')->with('status', 'Data Prodi Berhasil Dihapus');;
+        return redirect('/prodi')->with('status', 'Data Prodi Berhasil Dihapus');
     }
 }

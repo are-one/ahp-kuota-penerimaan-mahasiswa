@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>DASHMIN - Bootstrap Admin Template</title>
+    <title>SPK | FMIPA</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="keywords" />
     <meta content="" name="description" />
@@ -29,6 +29,21 @@
 
     <!-- Template Stylesheet -->
     <link href="/admin/css/style.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background-size: cover;
+            background-image: url('../img/awan2.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* background-color: #fff; */
+            font-family: 'Raleway', sans-serif;
+            font-weight: 100;
+            height: 100vh;
+            margin: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -39,6 +54,7 @@
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
+
         <!-- Spinner End -->
 
         <!-- Sign In Start -->
@@ -48,6 +64,7 @@
                     <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
                         <form method="POST" action="{{ route('postlogin') }}" aria-label="{{ __('Login') }}">
                             @csrf
+                            @include('alert')
                             <div class="d-flex align-items-center justify-content-between mb-3">
                                 <h3>Sign In</h3>
                             </div>

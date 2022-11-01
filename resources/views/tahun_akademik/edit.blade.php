@@ -1,8 +1,8 @@
 @extends('layouts.master')
-@section ('title', 'SPK | Tambah Data Prodi')
+@section ('title', 'SPK | Edit Data Prodi')
 @section('content')
 <div class="container-fluid pt-4 px-4">
-    <h6 class="mb-0"><i>Tambah Data Prodi</i></h6>
+    <h6 class="mb-0"><i>Edit Data Prodi</i></h6>
 </div>
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4 justify-content-center mx-0">
@@ -10,27 +10,27 @@
             <div class="bg-light rounded p-4">
                 <div class="table-responsive">
                     <div class="card-body">
-                        @include('validation_error')
-                        {{Form::open(['url' => 'prodi'])}}
+
+                        {{ Form::model($tahun,['url'=>'tahun_akademik/'.$tahun->id_tahun,'method'=>'PUT'])}}
                         @csrf
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-2 col-form-label text-md-right">Kode Prodi</label>
+                            <label for="password-confirm" class="col-md-2 col-form-label text-md-right">Kode Tahun</label>
                             <div class="col-md-3">
-                                {{Form::text('kode_prodi',null,['class' => 'form-control','placeholder' => 'Kode Prodi'])}}
+                                {{ Form::text('id_tahun',null,['class'=>'form-control','placeholder'=>'Kode Tahun'])}}
                             </div>
                         </div><br>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-2 col-form-label text-md-right">Nama Prodi</label>
+                            <label for="password-confirm" class="col-md-2 col-form-label text-md-right">Tahun Akademik</label>
                             <div class="col-md-4">
-                                {{Form::text('nama_prodi',null,['class' => 'form-control','placeholder' => 'Nama Dosen'])}}
+                                {{Form::text('tahun_akademik',null,['class' => 'form-control','placeholder' => 'Tahun Akademik'])}}
                             </div>
                         </div><br>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-2">
                                 {{Form::submit('Simpan Data',['class' => 'btn btn-sm btn-success'])}}
-                                <a href="/prodi" class="btn btn-sm btn-warning">Kembali</a>
+                                <a href="/tahun_akademik" class="btn btn-sm btn-warning">Kembali</a>
                             </div>
                         </div>
                         </form>

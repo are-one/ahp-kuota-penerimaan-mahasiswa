@@ -342,7 +342,7 @@
             <div class="bg-light text-center rounded p-4">
                 <h4 style="font-family: cambria"><b>Kesimpulan</b></h4>
                 @if(count($prioritas_matriks_kriteria) > 0)
-                <p>Presentase hasil keputusan akhir yang diperoleh melalui perhitungan AHP yaitu sebesar <b>{{array_sum($angka_penjumlahan_kriteria)}}</b></p>
+                <p>Presentase hasil keputusan akhir yang diperoleh melalui perhitungan AHP yaitu sebesar <b>{{array_sum($angka_penjumlahan_kriteria)}} %</b></p>
                 @else
                 <p>Tidak Ada Data Perhitungan</p>
                 @endif

@@ -11,8 +11,6 @@
 |
 */
 
-
-
 Route::get('/login', function () {
     return view('admin.login');
 })->name('login');
@@ -21,16 +19,20 @@ Route::post('/postlogin', 'LoginController@postlogin')->name('postlogin');
 Route::get('/logout', 'LoginController@logout')->name('logout');
 
 Route::group(['middleware' => ['auth:web']], function () {
+
     Route::get('/', function () {
         return view('welcome');
     });
-    Route::get('/dashboard', 'AdminController@dashboard');
+
+    Route::get('/tahun_akademik/json', 'TahunakademikController@json');
     Route::get('/prodi/json', 'ProdiController@json');
+
+    Route::resource('/tahun_akademik', 'TahunakademikController');
     Route::resource('/prodi', 'ProdiController');
-    Route::get('/prodi/create', 'ProdiController@create');
+    Route::get('/dashboard', 'AdminController@dashboard');
     Route::get('/dosen_aktif', 'DosenController@index');
-    Route::get('/ruangan', 'RuanganController@index');
-    Route::get('/ruangan/create', 'RuanganController@create');
+    Route::get('/kriteria', 'KriteriaController@index');
+    Route::get('/kriteria/create', 'KriteriaController@create');
     Route::get('/pembobotan', 'BobotController@index');
     Route::post('/pembobotan', 'BobotController@index');
     Route::get('/hasil_penilaian', 'HasilpenilaianController@index');

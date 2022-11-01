@@ -63,16 +63,6 @@
 
 <body>
     <div class="flex-center position-ref full-height">
-        @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-            <a href="{{ url('/home') }}">Home</a>
-            @else
-
-            @endauth
-        </div>
-        @endif
-
         <div class="content">
             <span class="login100-form-logo">
                 <img src="/admin/img/uho.png" alt="" srcset="" height="150" width="150">
