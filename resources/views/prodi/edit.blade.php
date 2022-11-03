@@ -10,7 +10,7 @@
             <div class="bg-light rounded p-4">
                 <div class="table-responsive">
                     <div class="card-body">
-
+                        @include('validation_error')
                         {{ Form::model($prodi,['url'=>'prodi/'.$prodi->kode_prodi,'method'=>'PUT'])}}
                         @csrf
 
@@ -27,10 +27,10 @@
                                 {{Form::text('nama_prodi',null,['class' => 'form-control','placeholder' => 'Nama Dosen'])}}
                             </div>
                         </div><br>
-                        <div class="form-group row mb-0">
+                        <div class="form-group row mb-3">
                             <div class="col-md-6 offset-md-2">
                                 {{Form::submit('Simpan Data',['class' => 'btn btn-sm btn-success'])}}
-                                <a href="/prodi" class="btn btn-sm btn-warning">Kembali</a>
+                                <a href="/prodi" class="btn btn-sm btn-warning"><i class="fas fa-arrow-left"></i> Kembali</a>
                             </div>
                         </div>
                         </form>

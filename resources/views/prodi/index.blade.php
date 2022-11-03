@@ -18,7 +18,7 @@
                             <tr>
                                 <th scope="col" width="100">Kode Prodi</th>
                                 <th scope="col">Nama Prodi</th>
-                                <th scope="col" width="70">Aksi</th>
+                                <th scope="col" width="100">Aksi</th>
                             </tr>
                         </thead>
                     </table>

@@ -29,7 +29,8 @@
 
     <!-- Template Stylesheet -->
     <link href="/admin/css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 </head>
 
 <body>
@@ -47,7 +48,7 @@
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>DASHMIN</h3>
+                    <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>SPK</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
@@ -85,9 +86,9 @@
         <div class="content">
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
-                <a href="#" class="sidebar-toggler flex-shrink-0" style="width: 40px; height: 40px;">
-                    <i class="fa fa-bars"></i>
-                </a>
+                <!-- <a href="#" class="sidebar-toggler flex-shrink-0" style="width: 40px; height: 40px;">
+                    <i class="fas fa-bars"></i>
+                </a> -->
 
 
                 <div class="navbar-nav align-items-center ms-auto">
@@ -145,11 +146,13 @@
     <!-- Template Javascript -->
     <script src="/admin/js/main.js"></script>
     <!-- jQuery -->
-    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//code.jquery.com/jquery-3.5.1.js"></script>
     <!-- DataTables -->
-    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <!-- Bootstrap JavaScript -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+
     <!-- App scripts -->
     @stack('scripts')
 </body>

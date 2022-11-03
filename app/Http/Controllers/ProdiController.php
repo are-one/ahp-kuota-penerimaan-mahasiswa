@@ -13,10 +13,12 @@ class ProdiController extends Controller
     {
         return Datatables::of(prodi::all())
             ->addColumn('action', function ($row) {
-                $action  = '<a href="/prodi/' . $row->kode_prodi . '/edit" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>';
+                $action  = '<a href="/prodi/' . $row->kode_prodi . ' " class="btn btn-primary btn-sm" style="float:left"><i class="fas fa-eye"></i></a>';
+                $action  = $action .  '<a href="/prodi/' . $row->kode_prodi . '/edit" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>';
                 $action .= \Form::open(['url' => 'prodi/' . $row->kode_prodi, 'method' => 'delete', 'style' => 'float:right']);
                 $action .= "<button type='submit'class='btn btn-danger btn-sm'><i class='fas fa-trash-alt'></i></button>";
                 $action .= \Form::close();
+
                 return $action;
             })->make(true);
     }
@@ -52,6 +54,28 @@ class ProdiController extends Controller
         return view('prodi.edit', $data);
     }
 
+    public function show($id)
+    {
+        $kriteria = [
+            'K01' => 'Kapasitas Ruangan',
+            'K02' => 'Jumlah Ruangan',
+            'K03' => 'Dosen Aktif',
+            'K04' => 'Mahasiswa Tingkat Akhir',
+            'K05' => 'Mahasiswa Aktif'
+        ];
+
+        $prioritas = [
+            'K01' => 0,
+            'K02' => 0,
+            'K03' => 0,
+            'K04' => 0,
+            'K05' => 0,
+        ];
+
+        $data['prodi'] = prodi::where('kode_prodi', $id)->first();
+        return view('prodi.detail', ['kriteria' => $kriteria, 'prioritas' => $prioritas], $data);
+    }
+
     public function update(Request $request, $kode_prodi)
     {
         $request->validate([
@@ -70,5 +94,9 @@ class ProdiController extends Controller
         $prodi = prodi::where('kode_prodi', $kode_prodi);
         $prodi->delete();
         return redirect('/prodi')->with('status', 'Data Prodi Berhasil Dihapus');
+    }
+
+    public function simpandata()
+    {
     }
 }

@@ -16,21 +16,21 @@
 
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-2 col-form-label text-md-right">Kode Tahun</label>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 {{ Form::text('id_tahun',null,['class'=>'form-control','placeholder'=>'Kode Tahun'])}}
                             </div>
                         </div><br>
 
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-2 col-form-label text-md-right">Tahun Akademik</label>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 {{Form::text('tahun_akademik',null,['class' => 'form-control','placeholder' => 'Tahun Akademik'])}}
                             </div>
                         </div><br>
-                        <div class="form-group row mb-0">
+                        <div class="form-group row mb-3">
                             <div class="col-md-6 offset-md-2">
                                 {{Form::submit('Simpan Data',['class' => 'btn btn-sm btn-success'])}}
-                                <a href="/tahun_akademik" class="btn btn-sm btn-warning">Kembali</a>
+                                <a href="/tahun_akademik" class="btn btn-sm btn-warning "><i class="fas fa-arrow-left"></i> Kembali</a>
                             </div>
                         </div>
                         </form>

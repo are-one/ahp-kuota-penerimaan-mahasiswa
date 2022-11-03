@@ -6,19 +6,18 @@
 </div>
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4 justify-content-center mx-0">
-
         <div class="col-sm-12 col-xl-12">
             <div class="bg-light rounded p-4">
                 <a href="/tahun_akademik/create" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Tambah Data Baru</a>
                 <hr>
                 @include('alert')
                 <div class="table-responsive">
-                    <table class="table text-center" id="tahun-table">
+                    <table class="table table-bordered" id="tahun-table">
                         <thead>
                             <tr>
                                 <th scope="col">Kode Tahun Akademik</th>
                                 <th scope="col">Tahun Akademik</th>
-                                <th scope="col">Aksi</th>
+                                <th scope="col" width="50">Aksi</th>
                             </tr>
                         </thead>
                     </table>
