@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\prodi;
 use App\Tahunakademik;
+use App\Kriteria;
+
 
 class KriteriaController extends Controller
 {

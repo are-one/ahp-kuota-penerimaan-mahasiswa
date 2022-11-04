@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Kriteria;
 use Illuminate\Http\Request;
 use App\prodi;
 use DataTables;
@@ -56,25 +57,15 @@ class ProdiController extends Controller
 
     public function show($id)
     {
-        $kriteria = [
-            'K01' => 'Kapasitas Ruangan',
-            'K02' => 'Jumlah Ruangan',
-            'K03' => 'Dosen Aktif',
-            'K04' => 'Mahasiswa Tingkat Akhir',
-            'K05' => 'Mahasiswa Aktif'
-        ];
 
         $prioritas = [
             'K01' => 0,
-            'K02' => 0,
-            'K03' => 0,
-            'K04' => 0,
-            'K05' => 0,
         ];
-
+        $kriteria = Kriteria::all();
         $data['prodi'] = prodi::where('kode_prodi', $id)->first();
-        return view('prodi.detail', ['kriteria' => $kriteria, 'prioritas' => $prioritas], $data);
+        return view('prodi.detail', ['prioritas' => $prioritas, 'kriteria' => $kriteria], $data);
     }
+
 
     public function update(Request $request, $kode_prodi)
     {
@@ -96,7 +87,13 @@ class ProdiController extends Controller
         return redirect('/prodi')->with('status', 'Data Prodi Berhasil Dihapus');
     }
 
-    public function simpandata()
+    public function simpandata(Request $request)
     {
+        $kriteria = new Kriteria();
+        $kriteria->nilai_prioritas = $request->addNilaiPrioritas;
+        $kriteria->id = $request;
+        $kriteria->nama_kriteria = $request;
+        $kriteria->save();
+        return redirect('prodi.detail')->with('status', 'Data Prodi Berhasil Disimpan');
     }
 }

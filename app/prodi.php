@@ -11,4 +11,9 @@ class prodi extends Model
     protected $table = "prodi";
 
     protected $fillable = ['kode_prodi', 'nama_prodi'];
+
+    public function kriteria()
+    {
+        return $this->belongsToMany('App\Kriteria');
+    }
 }

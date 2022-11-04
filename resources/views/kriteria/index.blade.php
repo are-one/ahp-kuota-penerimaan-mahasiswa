@@ -24,6 +24,10 @@
                                 <td>{{Form::select('tahun', $tahun, null,['class'=>'form-control'])}}</td>
                             </tr>
                             <tr>
+                                <td>Tahun Akademik</td>
+                                <td>{{Form::select('kriteria', $kriteria, null,['class'=>'form-control'])}}</td>
+                            </tr>
+                            <tr>
                                 <td colspan="2">
                                     <a href="/kriteria/create" class="btn btn-sm btn-success"><i class="fas fa-plus-square"></i> Input Kriteria</a>
                                 </td>
