@@ -87,12 +87,10 @@ class ProdiController extends Controller
         return redirect('/prodi')->with('status', 'Data Prodi Berhasil Dihapus');
     }
 
-    public function simpandata(Request $request)
+    public function simpandata(Request $request, kriteria $Kriteria)
     {
         $kriteria = new Kriteria();
         $kriteria->nilai_prioritas = $request->addNilaiPrioritas;
-        $kriteria->id = $request;
-        $kriteria->nama_kriteria = $request;
         $kriteria->save();
         return redirect('prodi.detail')->with('status', 'Data Prodi Berhasil Disimpan');
     }

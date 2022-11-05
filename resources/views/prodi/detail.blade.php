@@ -57,10 +57,6 @@
                     <div class="modal-body">
                         <div class="row col-md-12">
                             @foreach ($kriteria as $krt)
-                            <label hidden="true" class="col-md-6 col-form-label text-md-right mb-3">{{$krt->id}}</label>
-                            <div class="col-md-6">
-                                {{ Form::hidden('addNilaiPrioritas',null,['class'=>'form-control','placeholder'=> $krt->id])}}
-                            </div>
                             <label class="col-md-6 col-form-label text-md-right mb-3">{{$krt->nama_kriteria}}</label>
                             <div class="col-md-6">
                                 {{ Form::text('addNilaiPrioritas',null,['class'=>'form-control','placeholder'=> $krt->nama_kriteria])}}
