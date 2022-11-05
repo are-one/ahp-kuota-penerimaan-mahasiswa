@@ -4,22 +4,23 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92147973ecc7f7cbb972cf2bd5009953",
+    "content-hash": "4ef7156ed3dd8581c6dd5e3343ecfdcc",
     "packages": [
         {
             "name": "are-one/ahp",
-            "version": "1.0.0",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/are-one/ahp.git",
-                "reference": "f3400928f9e936ce75701090d81bdc36fd061d79"
+                "reference": "6bcc361ac26033e69397fd05914471afd4348639"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/are-one/ahp/zipball/f3400928f9e936ce75701090d81bdc36fd061d79",
-                "reference": "f3400928f9e936ce75701090d81bdc36fd061d79",
+                "url": "https://api.github.com/repos/are-one/ahp/zipball/6bcc361ac26033e69397fd05914471afd4348639",
+                "reference": "6bcc361ac26033e69397fd05914471afd4348639",
                 "shasum": ""
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -39,9 +40,9 @@
             "description": "Decision support system using Analytical Hierarchy Process (AHP) library in PHP",
             "support": {
                 "issues": "https://github.com/are-one/ahp/issues",
-                "source": "https://github.com/are-one/ahp/tree/1.0.0"
+                "source": "https://github.com/are-one/ahp/tree/main"
             },
-            "time": "2022-10-24T04:09:24+00:00"
+            "time": "2022-11-05T18:52:45+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -5956,7 +5957,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "are-one/ahp": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
