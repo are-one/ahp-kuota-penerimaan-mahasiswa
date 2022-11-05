@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Kriteria;
 use Illuminate\Http\Request;
 use App\prodi;
+use App\prodihaskriteria;
+use App\Tahunakademik;
 use DataTables;
 
 class ProdiController extends Controller
@@ -57,11 +59,19 @@ class ProdiController extends Controller
 
     public function show($id)
     {
+        $phk = \DB::table('prodi_has_kriteria')
+            ->join('prodi', 'prodi.kode_prodi', '=', 'prodi_has_kriteria.kode_prodi')
+            ->join('kriteria', 'kriteria.id', '=', 'prodi_has_kriteria.kriteria_id')
+            ->join('tahun', 'tahun.id_tahun', '=', 'prodi_has_kriteria.tahun_id_tahun')
+            ->first();
 
         $prioritas = [
             'K01' => 0,
         ];
-        $kriteria = Kriteria::all();
+        $kriteria1 = Kriteria::all();
+        $kriteria['kriteria'] = Kriteria::pluck('nama_kriteria', 'id');
+        $data['prodi_has_kriteria'] = $phk;
+        $data['tahun'] = Tahunakademik::pluck('tahun_akademik', 'id_tahun');
         $data['prodi'] = prodi::where('kode_prodi', $id)->first();
         // ambil data dari tabel prodi has kriteria filter bedasarkan prodi
         return view('prodi.detail', ['prioritas' => $prioritas, 'kriteria' => $kriteria], $data);
@@ -88,11 +98,10 @@ class ProdiController extends Controller
         return redirect('/prodi')->with('status', 'Data Prodi Berhasil Dihapus');
     }
 
-    public function simpandata(Request $request, kriteria $Kriteria)
+    public function simpandata(Request $request)
     {
-        $kriteria = new Kriteria();
-        $kriteria->nilai_prioritas = $request->addNilaiPrioritas;
-        $kriteria->save();
-        return redirect('prodi.detail')->with('status', 'Data Prodi Berhasil Disimpan');
+        $kriteria = new prodihaskriteria();
+        $kriteria->create($request->all());
+        return view('prodi.detail', $kriteria)->with('status', 'Data Prodi Berhasil Disimpan');
     }
 }

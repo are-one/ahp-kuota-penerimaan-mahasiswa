@@ -13,23 +13,25 @@
                 <div class="row">
                     <div class="col-md-5">
                         @include('validation_error')
-                        {{Form::open(['url' => 'kriteria','method'=>'POST'])}}
+                        {{ Form::model($kriteria,['url'=>'kriteria/'.$kriteria->id,'method'=>'PUT'])}}
                         @csrf
                         <table class="table table-bordered">
                             <tr>
-                                <th>ID Kriteria</th>
-                                <td>{{Form::number('id', null,['class'=>'form-control'])}}</td>
+                                <td>ID Kriteria</td>
+                                <td>{{Form::text('id', null,['class'=>'form-control','placeholder'=>'id'])}}</td>
                             </tr>
                             <tr>
-                                <th>Nama Kriteria</th>
-                                <td>{{Form::text('nama_kriteria', null,['class'=>'form-control'])}}</td>
+                                <td>Nama Kriteria</td>
+                                <td>{{Form::text('nama_kriteria', null,['class'=>'form-control','placeholder'=>'nama_kriteria'])}}</td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-plus-square"></i> Tambah Kriteria</button>
+                                    <a href="/kriteria" class="btn btn-sm btn-success "><i class="fas fa-arrow-left"></i> Input Kriteria</a>
+                                    {{Form::submit('Update Data',['class' => 'btn btn-sm btn-primary'])}}
                                 </td>
                             </tr>
                         </table>
+                        </form>
                     </div>
                     <div class="col-md-7">
                         @include('alert')
