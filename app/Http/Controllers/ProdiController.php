@@ -73,7 +73,8 @@ class ProdiController extends Controller
         $data['prodi_has_kriteria'] = $phk;
         $data['tahun'] = Tahunakademik::pluck('tahun_akademik', 'id_tahun');
         $data['prodi'] = prodi::where('kode_prodi', $id)->first();
-        return view('prodi.detail', ['prioritas' => $prioritas, 'kriteria1' => $kriteria1, 'kriteria' => $kriteria], $data);
+        // ambil data dari tabel prodi has kriteria filter bedasarkan prodi
+        return view('prodi.detail', ['prioritas' => $prioritas, 'kriteria' => $kriteria], $data);
     }
 
 

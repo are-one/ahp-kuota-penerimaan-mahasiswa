@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Kriteria;
 use AreOne\Ahp\Ahp;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Helper\Helper;
@@ -11,13 +12,29 @@ class BobotController extends Controller
 
     public function index(Request $request)
     {
-        $kriteria = [
-            'K01' => 'Kapasitas Ruangan',
-            'K02' => 'Jumlah Ruangan',
-            'K03' => 'Dosen Aktif',
-            'K04' => 'Mahasiswa Tingkat Akhir',
-            'K05' => 'Mahasiswa Aktif'
-        ];
+        $dataKriteria = Kriteria::all();
+        $kriteria = [];
+        foreach ($dataKriteria as $i => $dk) {
+            $kriteria[$dk->id] = $dk->nama_kriteria;
+        }
+        // dd($kriteria);
+        // Dummy
+        // $kriteria = [
+        //     'K01' => 'Kapasitas Ruangan',
+        //     'K02' => 'Jumlah Ruangan',
+        //     'K03' => 'Dosen Aktif',
+        //     'K04' => 'Mahasiswa Tingkat Akhir',
+        //     'K05' => 'Mahasiswa Aktif'
+        // ];
+
+        
+        // Ambil data nilai sub kriteri dari table prodi has kriteria
+        $nilai_sub_kriteria = [];
+
+        foreach ($kriteria as $id => $_) {
+            $nilai_sub_kriteria[$id] = 45;
+        }
+
 
         $sub_kriteria = [
             'K01' => [50, 40, 30, 20, 10],
@@ -26,14 +43,14 @@ class BobotController extends Controller
             'K04' => [50, 40, 30, 20, 10],
             'K05' => [50, 40, 30, 20, 10]
         ];
-
-        $nilai_sub_kriteria = [
-            'K01' => 40,
-            'K02' => 50,
-            'K03' => 40,
-            'K04' => 40,
-            'K05' => 50
-        ];
+        
+        // $nilai_sub_kriteria = [
+        //     'K01' => 40,
+        //     'K02' => 50,
+        //     'K03' => 40,
+        //     'K04' => 40,
+        //     'K05' => 50
+        // ];
 
         $modelAhp = new Ahp($kriteria, $sub_kriteria);
 
@@ -76,5 +93,10 @@ class BobotController extends Controller
             'matriks_kriteria_2' => $matriks_kriteria_2,
             'jumlah_matriks_kriteria_2' => $jumlah_matriks_kriteria_2,
         ]);
+    }
+
+    public function simpanBobot()
+    {
+        
     }
 }
