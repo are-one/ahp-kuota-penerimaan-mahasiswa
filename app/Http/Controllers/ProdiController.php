@@ -63,6 +63,7 @@ class ProdiController extends Controller
         ];
         $kriteria = Kriteria::all();
         $data['prodi'] = prodi::where('kode_prodi', $id)->first();
+        // ambil data dari tabel prodi has kriteria filter bedasarkan prodi
         return view('prodi.detail', ['prioritas' => $prioritas, 'kriteria' => $kriteria], $data);
     }
 
