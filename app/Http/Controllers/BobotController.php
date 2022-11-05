@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Kriteria;
+use App\NilaiPerbandingan;
+use App\prodi;
+use App\Tahunakademik;
 use AreOne\Ahp\Ahp;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Helper\Helper;
@@ -10,9 +13,13 @@ use Symfony\Component\Console\Helper\Helper;
 class BobotController extends Controller
 {
 
-    public function index(Request $request)
+    public function index(Request $request, $kode_prodi = '', $tahun = 0)
     {
+        $prodi = prodi::where('kode_prodi', $kode_prodi)->first();
+        $dataProdi = prodi::all();
+        $dataTahun = Tahunakademik::all();
         $dataKriteria = Kriteria::all();
+
         $kriteria = [];
         foreach ($dataKriteria as $i => $dk) {
             $kriteria[$dk->id] = $dk->nama_kriteria;
@@ -30,7 +37,7 @@ class BobotController extends Controller
         
         // Ambil data nilai sub kriteri dari table prodi has kriteria
         $nilai_sub_kriteria = [];
-
+        
         foreach ($kriteria as $id => $_) {
             $nilai_sub_kriteria[$id] = 45;
         }
@@ -51,9 +58,10 @@ class BobotController extends Controller
         //     'K04' => 40,
         //     'K05' => 50
         // ];
-
+        
+        
         $modelAhp = new Ahp($kriteria, $sub_kriteria);
-
+        
         $matriks = ($modelAhp->generate_matriks_perbandingan_berpasangan());
         $total_kolom = [];
         $matriks_kriteria = [];
@@ -61,8 +69,8 @@ class BobotController extends Controller
         $matriks_kriteria_2 = [];
         $jumlah_matriks_kriteria_2 = [];
         $prioritas_matriks_kriteria = [];
-
-
+        
+        
         if ($request->method() == "POST") {
             $data_nilai = $request->input('matriks');
             $matriks_perbandingan = $modelAhp->set_nilai_matriks_perbadingan_berpasanagan($data_nilai);
@@ -80,9 +88,39 @@ class BobotController extends Controller
 
             $matriks_kriteria_2 = $data_matriks_kriteria_2['matriks_kriteria_2'];
             $jumlah_matriks_kriteria_2 = $data_matriks_kriteria_2['jumlah_matriks_kriteria_2'];
+
+            if($prodi != null){
+                $modelProdi = prodi::find($prodi->kode_prodi);
+                $data = [];
+                foreach ($data_nilai as $id_baris => $data_baris) {
+                    foreach ($data_baris as $id_kolom => $nilai) {
+                        $data[] = new NilaiPerbandingan(['nilai' => $nilai, 'kriteria_id' => $id_baris, 'kriteria_id1' => $id_kolom, 'tahun_id' => 2022]);
+                    }
+                }
+                
+                if($modelProdi->nilaiPerbandingan()->saveMany($data)){
+                    $request->session()->flash('status', 'Data kriteria prodi berhasil disimpan');
+                }else{
+                    $request->session()->flash('status', 'Data kriteria prodi gagal disimpan');
+                }
+                
+            }else{
+                $request->session()->flash('status', 'Data prodi tidak ditemukan');
+            }
+        }else{
+            $prodi = prodi::find($kode_prodi);
+
+            if($prodi){
+                foreach ($prodi->nilaiPerbandingan as $nilai) {
+                   $matriks[$nilai->kriteria_id][$nilai->kriteria_id1] = $nilai->nilai;
+                }
+            }
         }
+
         //dd($jumlah_matriks_kriteria_2);
         return view('bobot.index', [
+            'dataProdi' => $dataProdi,
+            'dataTahun' => $dataTahun,
             'nilai_sub_kriteria' => $nilai_sub_kriteria,
             'kriteria' => $kriteria,
             'matriks' => $matriks,

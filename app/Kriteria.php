@@ -12,8 +12,8 @@ class Kriteria extends Model
 
     protected $fillable = ['id', 'nama_kriteria', 'nilai_prioritas'];
 
-    public function prodi()
+    public function prodis()
     {
-        return $this->belongsToMany('App\prodi');
+        return $this->belongsToMany('App\prodi','nilai_perbandingan');
     }
 }

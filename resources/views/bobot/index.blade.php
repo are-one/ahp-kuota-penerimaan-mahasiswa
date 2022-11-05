@@ -3,6 +3,33 @@
 @section('content')
 
 <div class="container-fluid pt-4 px-4">
+    <h6><i>Program Studi dan Tahun Akademik</i></h6>
+    <form class="row g-4" action="" method="GET">
+
+        <div class="col">
+                <select name="kode_prodi" class="form-select">
+                    <option value="">Pilih Prodi ...</option>
+                    @foreach ($dataProdi as $prodi)
+                        <option value="{{$prodi->kode_prodi}}">{{$prodi->nama_prodi}}</option>
+                    @endforeach
+                </select>
+        </div>
+        <div class="col">
+            <select name="id_tahun" class="form-select">
+                <option value="">Pilih Prodi ...</option>
+                @foreach ($dataTahun as $tahun)
+                    <option value="{{$tahun->id_tahun}}">{{$tahun->tahun_akademik}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col">
+                <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-search"></i>
+                    Cari Data</button>
+        </div>
+    </form>
+</div>
+
+<div class="container-fluid pt-4 px-4">
     <form action="" method="POST">
         <h6><i>Perbandingan Berpasangan</i></h6>
         <div class="row g-4">
@@ -84,7 +111,7 @@
 </div>
 
 <div class="container-fluid pt-4 px-4">
-    <h6><i>Matriks Nilai Kriteria</i></h6>
+    <h6><i>Matriks Nilai Kriteria 1</i></h6>
     <div class="row g-4">
         <div class="col-sm-12 col-xl-12">
             <div class="bg-light rounded p-0">
@@ -136,6 +163,7 @@
 </div>
 
 <div class="container-fluid pt-4 px-4">
+    <h6><i>Matriks Nilai Kriteria 2</i></h6>
     <div class="row g-4">
         <div class="col-sm-12 col-xl-12">
             <div class="bg-light rounded p-0">
