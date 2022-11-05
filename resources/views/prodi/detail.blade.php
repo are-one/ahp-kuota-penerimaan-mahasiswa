@@ -27,13 +27,15 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
+                            <th>Kode Prodi</th>
                             <th>Nama Kriteria</th>
-                            <th>Nilai Prioritas</th>
+                            <th>Nilai </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($kriteria as $krt)
+                        @foreach ($kriteria1 as $krt)
                         <tr>
+                            <td>{{$prodi->kode_prodi}}</td>
                             <td>{{$krt->nama_kriteria}}</td>
                             @foreach ($prioritas as $kode => $nama)
                             <td>{{$nama}}</td>
@@ -56,12 +58,30 @@
                     </div>
                     <div class="modal-body">
                         <div class="row col-md-12">
-                            @foreach ($kriteria as $krt)
-                            <label class="col-md-6 col-form-label text-md-right mb-3">{{$krt->nama_kriteria}}</label>
-                            <div class="col-md-6">
-                                {{ Form::text('addNilaiPrioritas',null,['class'=>'form-control','placeholder'=> $krt->nama_kriteria])}}
+                            <label class="col-md-4 col-form-label text-md-right mb-3">Nama Prodi</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="kode_prodi" value="{{$prodi->kode_prodi}}" readonly>
                             </div>
-                            @endforeach
+                        </div>
+                        @foreach ($kriteria as $krt)
+                        <div class="row col-md-12">
+                            <label class="col-md-4 col-form-label text-md-right mb-3">{{$krt->nama_kriteria}}</label>
+                            <div class="col-md-8">
+                                {{ Form::select('kriteria_id', null,['class'=>'form-control'])}}
+                            </div>
+                        </div>
+                        @endforeach
+                        <div class="row col-md-12">
+                            <label class="col-md-4 col-form-label text-md-right mb-3">Nilai</label>
+                            <div class="col-md-8">
+                                {{ Form::number('nilai', null,['class'=>'form-control', 'placeholder' => 'Inputkan Nilai'])}}
+                            </div>
+                        </div>
+                        <div class="row col-md-12">
+                            <label class="col-md-4 col-form-label text-md-right mb-3">Tahun Akademik</label>
+                            <div class="col-md-8">
+                                {{ Form::select('tahun_id_tahun', $tahun, null,['class'=>'form-control'])}}
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">

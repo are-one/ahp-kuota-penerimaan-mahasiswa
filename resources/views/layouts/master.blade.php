@@ -68,14 +68,6 @@
                     <a href="/pembobotan" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Data Bobot</a>
                     <a href="/hasil_penilaian" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Hasil Penilaian</a>
                     <a href="/tahun_akademik" class="nav-item nav-link"><i class="fa fa-calendar me-2"></i>Tahun Akademik</a>
-                    <a href="{{ route('logout') }}" class="nav-item nav-link" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-                        <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
-                        <form id="logout-form" action="{{ route('logout') }}" style="display: none;">
-                            @csrf
-                        </form>
-                    </a>
-
                 </div>
             </nav>
         </div>
@@ -93,14 +85,12 @@
 
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-item nav-link">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-item nav-link">
-                            <i class="fab fa-instagram"></i>
+                        <a href="{{ route('logout') }}" class="nav-item nav-link" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }} <i class="fas fa-sign-out-alt"></i>
+                            <form id="logout-form" action="{{ route('logout') }}" style="display: none;">
+                                @csrf
+                            </form>
                         </a>
                     </div>
                 </div>
@@ -129,7 +119,7 @@
 
 
         <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <!-- <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a> -->
     </div>
 
     <!-- JavaScript Libraries -->

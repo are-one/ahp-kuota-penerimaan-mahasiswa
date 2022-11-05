@@ -26,12 +26,13 @@ Route::group(['middleware' => ['auth:web']], function () {
 
     Route::get('/tahun_akademik/json', 'TahunakademikController@json');
     Route::get('/prodi/json', 'ProdiController@json');
+    Route::get('/kriteria/json', 'KriteriaController@json');
 
     Route::resource('/tahun_akademik', 'TahunakademikController');
     Route::resource('/prodi', 'ProdiController');
     Route::get('/dashboard', 'AdminController@dashboard');
     Route::get('/dosen_aktif', 'DosenController@index');
-    Route::get('/kriteria', 'KriteriaController@index');
+    Route::resource('/kriteria', 'KriteriaController');
     Route::get('/kriteria/create', 'KriteriaController@create');
     Route::get('/pembobotan', 'BobotController@index');
     Route::post('/pembobotan', 'BobotController@index');
