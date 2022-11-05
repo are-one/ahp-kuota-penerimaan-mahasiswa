@@ -86,9 +86,9 @@
         <div class="content">
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
-                <!-- <a href="#" class="sidebar-toggler flex-shrink-0" style="width: 40px; height: 40px;">
+                <a href="#" class="sidebar-toggler flex-shrink-0" style="width: 40px; height: 40px;">
                     <i class="fas fa-bars"></i>
-                </a> -->
+                </a> 
 
 
                 <div class="navbar-nav align-items-center ms-auto">

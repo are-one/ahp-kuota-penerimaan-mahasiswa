@@ -8,6 +8,7 @@ use App\prodi;
 use App\prodihaskriteria;
 use App\Tahunakademik;
 use DataTables;
+use Illuminate\Support\Facades\Input;
 
 class ProdiController extends Controller
 {
@@ -59,22 +60,29 @@ class ProdiController extends Controller
 
     public function show($id)
     {
-        $phk = \DB::table('prodi_has_kriteria')
-            ->join('prodi', 'prodi.kode_prodi', '=', 'prodi_has_kriteria.kode_prodi')
-            ->join('kriteria', 'kriteria.id', '=', 'prodi_has_kriteria.kriteria_id')
-            ->join('tahun', 'tahun.id_tahun', '=', 'prodi_has_kriteria.tahun_id_tahun')
-            ->first();
+        $id_tahun = Input::get('id_tahun', 0);
+        $tahun = Tahunakademik::where('id_tahun', $id_tahun)->first();
 
-        $prioritas = [
-            'K01' => 0,
-        ];
+        if($tahun != null){
+            // $phk = \DB::table('prodi_has_kriteria')
+            //     ->join('prodi', 'prodi.kode_prodi', '=', 'prodi_has_kriteria.kode_prodi')
+            //     ->join('kriteria', 'kriteria.id', '=', 'prodi_has_kriteria.kriteria_id')
+            //     ->join('tahun', 'tahun.id_tahun', '=', 'prodi_has_kriteria.tahun_id_tahun')
+            //     ->first();
+            $phk = prodihaskriteria::where([['kode_prodi', '=', $id],['tahun_id', '=', $id_tahun]])->pluck('nilai','kriteria_id');
+        }else{
+            $phk = [];
+        }
+
         $kriteria1 = Kriteria::all();
-        $kriteria['kriteria'] = Kriteria::pluck('nama_kriteria', 'id');
+        $kriteria = Kriteria::pluck('nama_kriteria', 'id');
+
         $data['prodi_has_kriteria'] = $phk;
+
         $data['tahun'] = Tahunakademik::pluck('tahun_akademik', 'id_tahun');
         $data['prodi'] = prodi::where('kode_prodi', $id)->first();
-        // ambil data dari tabel prodi has kriteria filter bedasarkan prodi
-        return view('prodi.detail', ['prioritas' => $prioritas, 'kriteria' => $kriteria], $data);
+
+        return view('prodi.detail', ['kriteria' => $kriteria, 'kriteria1' => $kriteria1, 'id_tahun' => $id_tahun], $data);
     }
 
 
@@ -100,8 +108,37 @@ class ProdiController extends Controller
 
     public function simpandata(Request $request)
     {
-        $kriteria = new prodihaskriteria();
-        $kriteria->create($request->all());
-        return view('prodi.detail', $kriteria)->with('status', 'Data Prodi Berhasil Disimpan');
+        $data_request = $request->post();
+        $kode_prodi = $data_request['kode_prodi'];
+        $tahun =  $data_request['id_tahun'];
+
+        unset($data_request['kode_prodi']);
+        unset($data_request['id_tahun']);
+        unset($data_request['_token']);
+        
+        $prodi = prodi::find($kode_prodi);
+        
+        if(count($prodi->prodiHasKriterias()->where('tahun_id', $tahun)->get()) > 0){
+            foreach ($data_request as $kriteria_id => $nilai) {
+                $phk_update = prodihaskriteria::where([
+                    ['kode_prodi', '=', $kode_prodi],
+                    ['kriteria_id', '=', $kriteria_id],
+                    ['tahun_id', '=', $tahun]
+                ]);
+
+                $phk_update->update(['nilai' => $nilai]);
+            }
+        }else{
+            
+            $data_save = [];
+            foreach ($data_request as $id_kriteria => $nilai_kriteria) {
+                $data_save[] = new prodihaskriteria(['kriteria_id' => $id_kriteria, 'tahun_id' => $tahun, 'nilai' => $nilai_kriteria]);
+            }
+    
+            // dd($data_save);
+            $prodi->prodiHasKriterias()->saveMany($data_save);
+        }
+
+        return redirect('prodi/'.$kode_prodi.'?id_tahun='.$tahun)->with('status', 'Data Prodi Berhasil Disimpan');
     }
 }

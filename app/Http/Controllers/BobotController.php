@@ -8,14 +8,18 @@ use App\prodi;
 use App\Tahunakademik;
 use AreOne\Ahp\Ahp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Symfony\Component\Console\Helper\Helper;
 
 class BobotController extends Controller
 {
 
-    public function index(Request $request, $kode_prodi = '', $tahun = 0)
+    public function index(Request $request)
     {
+        $kode_prodi = Input::get('kode_prodi', '');
+        $id_tahun = Input::get('tahun', 0);
         $prodi = prodi::where('kode_prodi', $kode_prodi)->first();
+        $tahun = Tahunakademik::where('id_tahun', $id_tahun)->first();
         $dataProdi = prodi::all();
         $dataTahun = Tahunakademik::all();
         $dataKriteria = Kriteria::all();
@@ -89,12 +93,12 @@ class BobotController extends Controller
             $matriks_kriteria_2 = $data_matriks_kriteria_2['matriks_kriteria_2'];
             $jumlah_matriks_kriteria_2 = $data_matriks_kriteria_2['jumlah_matriks_kriteria_2'];
 
-            if($prodi != null){
+            if($prodi != null && $tahun != null){
                 $modelProdi = prodi::find($prodi->kode_prodi);
                 $data = [];
                 foreach ($data_nilai as $id_baris => $data_baris) {
                     foreach ($data_baris as $id_kolom => $nilai) {
-                        $data[] = new NilaiPerbandingan(['nilai' => $nilai, 'kriteria_id' => $id_baris, 'kriteria_id1' => $id_kolom, 'tahun_id' => 2022]);
+                        $data[] = new NilaiPerbandingan(['nilai' => $nilai, 'kriteria_id' => $id_baris, 'kriteria_id1' => $id_kolom, 'tahun_id' => $tahun->id_tahun]);
                     }
                 }
                 

@@ -34,8 +34,8 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::get('/dosen_aktif', 'DosenController@index');
     Route::resource('/kriteria', 'KriteriaController');
     Route::get('/kriteria/create', 'KriteriaController@create');
-    Route::get('/pembobotan/{kode_prodi?}/{tahun?}', 'BobotController@index');
-    Route::post('/pembobotan/{kode_prodi?}/{tahun?}', 'BobotController@index');
+    Route::get('/pembobotan', 'BobotController@index');
+    Route::post('/pembobotan', 'BobotController@index');
     Route::get('/hasil_penilaian', 'HasilpenilaianController@index');
     Route::post('simpandata', 'ProdiController@simpandata')->name('simpandata');
 });

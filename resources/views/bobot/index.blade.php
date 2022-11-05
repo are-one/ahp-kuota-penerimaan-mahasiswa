@@ -312,7 +312,7 @@
     <div class="row justify-content-center g-4">
         <div class="col-sm-12 col-xl-12">
             <div class="bg-light rounded p-4">
-                <table class="" style="border:none" id="banding-table">
+                <table class="table table-borderless" style="border:none" id="banding-table">
                     <tbody>
                         @php($text_penjumlahan_kriteria = [])
                         @php($angka_penjumlahan_kriteria = [])
@@ -353,7 +353,7 @@
                         </tr>
                         @else
                         <tr>
-                            <td colspan="{{ count($kriteria) + 1}}">
+                            <td class="text-center" colspan="{{ count($kriteria) + 1}}">
                                 Tidak ada data perhitungan
                             </td>
                         </tr>
