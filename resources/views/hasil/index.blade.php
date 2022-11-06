@@ -2,7 +2,48 @@
 @section ('title', 'SPK | Hasil Penilaian')
 @section('content')
 <div class="container-fluid pt-4 px-4">
-    <h6 class="mb-0"><i>Proses Akhir Penilaian AHP</i></h6>
+    <div class="row g-4 justify-content-center mx-0">
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-light rounded p-4">
+                <h6 class="mb-0"><i>Proses Akhir Penilaian AHP</i></h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid pt-4 px-4">
+    @include('alert')
+
+    <div class="row g-4 justify-content-center mx-0">
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-light rounded p-4">
+                <h6><i>Program Studi dan Tahun Akademik</i></h6>
+                <form class="row g-4" action="" method="GET">
+            
+                    <div class="col">
+                            <select name="kode_prodi" class="form-select">
+                                <option value="">Pilih Prodi ...</option>
+                                @foreach ($dataProdi as $prodi)
+                                    <option value="{{$prodi->kode_prodi}}" {{ ($prodi->kode_prodi == $kode_prodi)? 'selected' : '' }}>{{$prodi->nama_prodi}}</option>
+                                @endforeach
+                            </select>
+                    </div>
+                    <div class="col">
+                        <select name="id_tahun" class="form-select">
+                            <option value="">Pilih Prodi ...</option>
+                            @foreach ($dataTahun as $tahun)
+                                <option value="{{$tahun->id_tahun}}" {{ ($tahun->id_tahun == $id_tahun)? 'selected' : '' }}>{{$tahun->tahun_akademik}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col">
+                            <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-search"></i>
+                                Cari Data</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4 justify-content-center mx-0">
