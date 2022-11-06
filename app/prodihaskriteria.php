@@ -10,5 +10,10 @@ class prodihaskriteria extends Model
 
     protected $table = "prodi_has_kriteria";
 
-    protected $fillable = ['kode_prodi', 'kriteria_id', 'nilai', 'tahun_id_tahun'];
+    protected $fillable = ['kode_prodi', 'kriteria_id', 'nilai', 'tahun_id'];
+
+    public function prodi()
+    {
+        return $this->belongsTo('App\prodi');
+    }
 }

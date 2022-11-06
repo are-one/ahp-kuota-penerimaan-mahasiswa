@@ -23,7 +23,22 @@
                     </tr>
                 </table>
                 <h5 class="mb-3"><i>Kriteria</i></h5>
-                <button type="button" class="btn btn-sm btn-success mb-3" data-bs-toggle="modal" data-bs-target="#modal-add"><i class=" fas fa-plus-square"></i> Input Kriteria</button>
+                <form class="row g-4 mb-3" action="" method="GET">
+                    <div class="col">
+                        <select name="id_tahun" class="form-select">
+                            <option value="">Pilih Tahun ...</option>
+                            @foreach ($tahun as $id_thn => $tahun)
+                                <option value="{{$id_thn}}" {{ ($id_thn == $id_tahun)? "selected" : "" }}>{{$tahun}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col">
+                        
+                                <button type="submit" class="btn btn-info"><i class="fas fa-search"></i>
+                                    Cari Data</button>
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-add"><i class=" fas fa-plus-square"></i> Input Kriteria</button>
+                    </div>
+                </form>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -33,15 +48,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($kriteria1 as $krt)
-                        <tr>
-                            <td>{{$prodi->kode_prodi}}</td>
-                            <td>{{$krt->nama_kriteria}}</td>
-                            @foreach ($prioritas as $kode => $nama)
-                            <td>{{$nama}}</td>
-                            @endforeach
-                        </tr>
-                        @endforeach
+
+                            @foreach ($kriteria1 as $krt)
+                            <tr>
+                                <td>{{$prodi->kode_prodi}}</td>
+                                <td>{{$krt->nama_kriteria}}</td>
+                                <td>{{ isset($prodi_has_kriteria[$krt->id])? $prodi_has_kriteria[$krt->id] : 0 }}</td>
+                            </tr>
+                            @endforeach                            
+                       
                     </tbody>
                 </table>
             </div>
@@ -57,7 +72,14 @@
                         <h4 class="modal-title">Input Nilai Kriteria</h4>
                     </div>
                     <div class="modal-body">
+                        
+                                {{{Form::hidden('id_tahun', $id_tahun,[]) }}}
+                                {{{Form::hidden('kode_prodi', $prodi->kode_prodi,[]) }}}
+
+
+                        @foreach($kriteria as $id => $nama_kriteria)
                         <div class="row col-md-12">
+<<<<<<< HEAD
                             <label class="col-md-4 col-form-label text-md-right mb-3">Nama Prodi</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" name="kode_prodi" value="{{$prodi->kode_prodi}}" readonly>
@@ -65,10 +87,14 @@
                         </div>
                         <div class="row col-md-12">
                             <label class="col-md-4 col-form-label text-md-right mb-3">nama</label>
+=======
+                            <label class="col-md-4 col-form-label text-md-right mb-3">{{$nama_kriteria}}</label>
+>>>>>>> d27c8f2e49c0eb9f711d34bc855c2a5ac966be6a
                             <div class="col-md-8">
-                                {{ Form::select('kriteria_id', null,['class'=>'form-control'])}}
+                                {{ Form::number($id, (isset($prodi_has_kriteria[$id])? $prodi_has_kriteria[$id] : 0),['class'=>'form-control'])}}
                             </div>
                         </div>
+<<<<<<< HEAD
                         <div class="row col-md-12">
                             <label class="col-md-4 col-form-label text-md-right mb-3">Nilai</label>
                             <div class="col-md-8">
@@ -81,6 +107,9 @@
                                 {{ Form::select('tahun_id_tahun', $tahun, null,['class'=>'form-control'])}}
                             </div>
                         </div>
+=======
+                        @endforeach
+>>>>>>> d27c8f2e49c0eb9f711d34bc855c2a5ac966be6a
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Close</button>

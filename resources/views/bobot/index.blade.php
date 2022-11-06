@@ -3,10 +3,41 @@
 @section('content')
 
 <div class="container-fluid pt-4 px-4">
+    @include('alert')
+
+    <h6><i>Program Studi dan Tahun Akademik</i></h6>
+    <form class="row g-4" action="" method="GET">
+
+        <div class="col">
+                <select name="kode_prodi" class="form-select">
+                    <option value="">Pilih Prodi ...</option>
+                    @foreach ($dataProdi as $prodi)
+                        <option value="{{$prodi->kode_prodi}}" {{ ($prodi->kode_prodi == $kode_prodi)? 'selected' : '' }}>{{$prodi->nama_prodi}}</option>
+                    @endforeach
+                </select>
+        </div>
+        <div class="col">
+            <select name="id_tahun" class="form-select">
+                <option value="">Pilih Prodi ...</option>
+                @foreach ($dataTahun as $tahun)
+                    <option value="{{$tahun->id_tahun}}" {{ ($tahun->id_tahun == $id_tahun)? 'selected' : '' }}>{{$tahun->tahun_akademik}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col">
+                <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-search"></i>
+                    Cari Data</button>
+        </div>
+    </form>
+</div>
+
+<div class="container-fluid pt-4 px-4">
     <form action="" method="POST">
+        {{  Form::hidden('id_tahun', $id_tahun, []) }}
+        {{  Form::hidden('tahun_id', $kode_prodi, []) }}
         <h6><i>Perbandingan Berpasangan</i></h6>
         <div class="row g-4">
-            <div class="col-sm-12 col-xl-9">
+            <div class="col-sm-12 col-12">
                 <div class="bg-light rounded p-0">
                     <table class="table text-center table-bordered" id="banding-table">
                         <thead>
@@ -32,7 +63,7 @@
                                 </td>
                                 @else
                                 <td style="vertical-align: middle">
-                                    <input type="number" min="1" max="9" name="matriks[{{ $kode_baris }}][{{ $kode_kolom }}]" id="" style="width: 50px" value="{{ $nilai }}">
+                                    <input type="number" min="0" max="9" name="matriks[{{ $kode_baris }}][{{ $kode_kolom }}]" id="" style="width: 50px" value="{{ $nilai }}">
                                 </td>
                                 @php($list_input[$kode_baris][$kode_kolom] = true)
                                 @endif
@@ -52,31 +83,13 @@
                 </div>
             </div>
 
-            <div class="col-sm-12 col-xl-3">
-                <div class="bg-light rounded p-0">
-                    <table class="table text-center" id="banding2-table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Jumlah Ruangan</th>
-                                <th scope="col">Jml.Kapasitas Ruangan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>30</td>
-                                <td>40</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </div>
 
         <div class="row g-4">
             <div class="col-sm-12 col-xl-12 text-center">
                 <div class="h-100 p-0">
-                    <button type="submit" name="simpan" class="btn btn-sm btn-success"><i class="fas fa-sync-alt"></i>
-                        Proses Data</button>
+                    <button type="submit" name="simpan" class="btn btn-success"><i class="fas fa-sync-alt"></i>
+                        Proses Data & &nbsp;<i class="fas fa-save"></i> Simpan</button>
                 </div>
             </div>
         </div>
@@ -84,7 +97,7 @@
 </div>
 
 <div class="container-fluid pt-4 px-4">
-    <h6><i>Matriks Nilai Kriteria</i></h6>
+    <h6><i>Matriks Nilai Kriteria 1</i></h6>
     <div class="row g-4">
         <div class="col-sm-12 col-xl-12">
             <div class="bg-light rounded p-0">
@@ -136,6 +149,7 @@
 </div>
 
 <div class="container-fluid pt-4 px-4">
+    <h6><i>Matriks Nilai Kriteria 2</i></h6>
     <div class="row g-4">
         <div class="col-sm-12 col-xl-12">
             <div class="bg-light rounded p-0">
@@ -272,7 +286,7 @@
                         @foreach ($kriteria as $kode => $nama)
                         <tr>
                             <td>{{$nama}}</td>
-                            <td>{{$nilai_sub_kriteria[$kode]}}</td>
+                            <td>{{ isset($nilai_sub_kriteria[$kode])? $nilai_sub_kriteria[$kode] : 0 }}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -284,14 +298,14 @@
     <div class="row justify-content-center g-4">
         <div class="col-sm-12 col-xl-12">
             <div class="bg-light rounded p-4">
-                <table class="" style="border:none" id="banding-table">
+                <table class="table table-borderless" style="border:none" id="banding-table">
                     <tbody>
                         @php($text_penjumlahan_kriteria = [])
                         @php($angka_penjumlahan_kriteria = [])
                         @if(count($prioritas_matriks_kriteria) > 0)
                         @foreach ($kriteria as $kode => $nama)
                         @php($text_penjumlahan_kriteria[]= $nama)
-                        @php($angka_penjumlahan_kriteria[]= round($nilai_sub_kriteria[$kode]*$prioritas_matriks_kriteria[$kode],2))
+                        @php($angka_penjumlahan_kriteria[]= isset($nilai_sub_kriteria[$kode])? round($nilai_sub_kriteria[$kode]*$prioritas_matriks_kriteria[$kode],2) : 0)
                         <tr>
                             <td>{{$nama}}</td>
                             <td>&nbsp;=</td>
@@ -300,12 +314,12 @@
                         <tr>
                             <td></td>
                             <td>&nbsp;=</td>
-                            <td>&nbsp;{{$nilai_sub_kriteria[$kode]}} * {{round($prioritas_matriks_kriteria[$kode], 2)}}</td>
+                            <td>&nbsp;{{ isset($nilai_sub_kriteria[$kode])? $nilai_sub_kriteria[$kode] : 0}} * {{round($prioritas_matriks_kriteria[$kode], 2)}}</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>&nbsp;=</td>
-                            <td>&nbsp;{{round($nilai_sub_kriteria[$kode]*$prioritas_matriks_kriteria[$kode],2)}}</td>
+                            <td>&nbsp;{{isset($nilai_sub_kriteria[$kode])? round($nilai_sub_kriteria[$kode]*$prioritas_matriks_kriteria[$kode],2) : 0}}</td>
                         </tr>
                         @endforeach
                         <tr>
@@ -325,7 +339,7 @@
                         </tr>
                         @else
                         <tr>
-                            <td colspan="{{ count($kriteria) + 1}}">
+                            <td class="text-center" colspan="{{ count($kriteria) + 1}}">
                                 Tidak ada data perhitungan
                             </td>
                         </tr>

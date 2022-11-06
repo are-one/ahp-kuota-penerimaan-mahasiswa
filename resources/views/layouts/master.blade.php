@@ -79,9 +79,9 @@
         <div class="content">
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
-                <!-- <a href="#" class="sidebar-toggler flex-shrink-0" style="width: 40px; height: 40px;">
+                <a href="#" class="sidebar-toggler flex-shrink-0" style="width: 40px; height: 40px;">
                     <i class="fas fa-bars"></i>
-                </a> -->
+                </a> 
 
 
                 <div class="navbar-nav align-items-center ms-auto">
@@ -109,7 +109,7 @@
                 <div class="bg-light rounded-top p-4">
                     <div class="row">
                         <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; <a href="#">Your Site Name</a>, All Right Reserved.
+                            &copy; <a href="#">Dian Safitri</a>, .
                         </div>
                     </div>
                 </div>
