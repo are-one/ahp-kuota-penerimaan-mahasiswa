@@ -9,9 +9,7 @@
     <div class="row g-4 justify-content-center mx-0">
         <div class="bg-light rounded p-4">
             <div class="col-md-12">
-                <a href="/prodi" class="btn btn-sm btn-warning mb-3"><i class="fas fa-arrow-left"></i> Kembali</a>
-                <button class="btn btn-sm btn-primary mb-3"><i class="fas fa-upload"></i> Update</button>
-                <button class="btn btn-sm btn-danger mb-3"><i class="fas fa-random"></i> Reset Nilai</button>
+                <a href="/prodi" class="btn btn-sm btn-warning mb-3"><i class="fas fa-arrow-left"></i> List Prodi</a>
                 <table class="table table-bordered">
                     <tr>
                         <th width="200">Kode Prodi</th>
@@ -28,15 +26,15 @@
                         <select name="id_tahun" class="form-select">
                             <option value="">Pilih Tahun ...</option>
                             @foreach ($tahun as $id_thn => $tahun)
-                                <option value="{{$id_thn}}" {{ ($id_thn == $id_tahun)? "selected" : "" }}>{{$tahun}}</option>
+                            <option value="{{$id_thn}}" {{ ($id_thn == $id_tahun)? "selected" : "" }}>{{$tahun}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="col">
-                        
-                                <button type="submit" class="btn btn-info"><i class="fas fa-search"></i>
-                                    Cari Data</button>
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-add"><i class=" fas fa-plus-square"></i> Input Kriteria</button>
+
+                        <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-search"></i>
+                            Cari Data</button>
+                        <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modal-add"><i class=" fas fa-plus-square"></i> Input Kriteria</button>
                     </div>
                 </form>
                 <table class="table table-bordered">
@@ -49,14 +47,14 @@
                     </thead>
                     <tbody>
 
-                            @foreach ($kriteria1 as $krt)
-                            <tr>
-                                <td>{{$prodi->kode_prodi}}</td>
-                                <td>{{$krt->nama_kriteria}}</td>
-                                <td>{{ isset($prodi_has_kriteria[$krt->id])? $prodi_has_kriteria[$krt->id] : 0 }}</td>
-                            </tr>
-                            @endforeach                            
-                       
+                        @foreach ($kriteria1 as $krt)
+                        <tr>
+                            <td>{{$prodi->kode_prodi}}</td>
+                            <td>{{$krt->nama_kriteria}}</td>
+                            <td>{{ isset($prodi_has_kriteria[$krt->id])? $prodi_has_kriteria[$krt->id] : 0 }}</td>
+                        </tr>
+                        @endforeach
+
                     </tbody>
                 </table>
             </div>
@@ -72,9 +70,9 @@
                         <h4 class="modal-title">Input Nilai Kriteria</h4>
                     </div>
                     <div class="modal-body">
-                        
-                                {{{Form::hidden('id_tahun', $id_tahun,[]) }}}
-                                {{{Form::hidden('kode_prodi', $prodi->kode_prodi,[]) }}}
+
+                        {{{Form::hidden('id_tahun', $id_tahun,[]) }}}
+                        {{{Form::hidden('kode_prodi', $prodi->kode_prodi,[]) }}}
 
 
                         @foreach($kriteria as $id => $nama_kriteria)
