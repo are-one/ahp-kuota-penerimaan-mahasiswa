@@ -12,22 +12,14 @@
 </div>
 
 <div class="container-fluid pt-4 px-4">
-    @include('alert')
-
+    
     <div class="row g-4 justify-content-center mx-0">
         <div class="col-sm-12 col-xl-12">
+            @include('alert')
             <div class="bg-light rounded p-4">
-                <h6><i>Program Studi dan Tahun Akademik</i></h6>
+                <h6><i>Tahun Akademik</i></h6>
                 <form class="row g-4" action="" method="GET">
             
-                    <div class="col">
-                            <select name="kode_prodi" class="form-select">
-                                <option value="">Pilih Prodi ...</option>
-                                @foreach ($dataProdi as $prodi)
-                                    <option value="{{$prodi->kode_prodi}}" {{ ($prodi->kode_prodi == $kode_prodi)? 'selected' : '' }}>{{$prodi->nama_prodi}}</option>
-                                @endforeach
-                            </select>
-                    </div>
                     <div class="col">
                         <select name="id_tahun" class="form-select">
                             <option value="">Pilih Prodi ...</option>
@@ -37,7 +29,7 @@
                         </select>
                     </div>
                     <div class="col">
-                            <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-search"></i>
+                            <button type="submit" class="btn btn-success"><i class="fas fa-search"></i>
                                 Cari Data</button>
                     </div>
                 </form>
@@ -52,61 +44,35 @@
                 <table class="table text-center" id="hasil-table">
                     <thead>
                         <tr>
-                            <th scope="col">Id Prodi</th>
-                            <th scope="col">Jml.Mahasiswa Aktif</th>
-                            <th scope="col">Jml.Mahasiswa TA</th>
-                            <th scope="col">Jml.Dosen Aktif</th>
-                            <th scope="col">Jumlah Ruangan</th>
-                            <th scope="col">Kapasitas Ruangan</th>
-                            <th scope="col">Keputusan</th>
+                            <th scope="col">Prodi</th>
+                            @foreach ($dataKriteria as $kriteria)
+                                <th scope="col">{{ $kriteria->nama_kriteria }}</th>
+                            @endforeach
+    
+                            @if ($keputusan)
+                                <th scope="col">Keputusan</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>500</td>
-                            <td>100</td>
-                            <td>50</td>
-                            <td>30</td>
-                            <td>40</td>
-                            <td>30</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td>500</td>
-                            <td>100</td>
-                            <td>50</td>
-                            <td>30</td>
-                            <td>40</td>
-                            <td>30</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td>500</td>
-                            <td>100</td>
-                            <td>50</td>
-                            <td>30</td>
-                            <td>40</td>
-                            <td>30</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td>500</td>
-                            <td>100</td>
-                            <td>50</td>
-                            <td>30</td>
-                            <td>40</td>
-                            <td>30</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td>500</td>
-                            <td>100</td>
-                            <td>50</td>
-                            <td>30</td>
-                            <td>40</td>
-                            <td>30</td>
-                            <td>40</td>
-                        </tr>
+
+                        @foreach ($dataProdi as $prodi)
+                            <tr>
+                                <td class="text-start">
+                                    {{ $prodi->nama_prodi}}
+                                    <br><small class="text-muted">{{ $prodi->kode_prodi}}</small>
+                                </td>
+
+                                @foreach ($dataKriteria as $kriteria)
+                                    <td style="vertical-align: middle">{{ isset($nilaiKriteria[$prodi->kode_prodi][$kriteria->id]) ? $nilaiKriteria[$prodi->kode_prodi][$kriteria->id] : 0  }}</td>    
+                                @endforeach
+                                
+                                @if ($keputusan)
+                                    <td style="vertical-align: middle">{!! (($keputusan[$prodi->kode_prodi] > 0)? '<span class="badge bg-success">'.$keputusan[$prodi->kode_prodi].'</span>': '<span class="badge bg-danger">0</span>') !!}</td>
+                                @endif
+                            </tr>
+                        @endforeach
+                        
                     </tbody>
                 </table>
             </div>
@@ -120,8 +86,12 @@
         </div>
         <div class="col-sm-12 col-xl-4">
             <div class="h-100 p-0">
-                <button type="submit" class="btn btn-md btn-primary"><i class="fas fa-file-archive"></i> Proses</button>
-                <button type="submit" class="btn btn-md btn-danger"><i class="fas fa-file-archive"></i> Cetak</button>
+                <form action="" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-md btn-primary"><i class="fas fa-file-archive"></i> Proses</button>
+                    <button type="submit" class="btn btn-md btn-danger"><i class="fas fa-print"></i> Cetak</button>
+                </form>
+                
             </div>
         </div>
     </div>
