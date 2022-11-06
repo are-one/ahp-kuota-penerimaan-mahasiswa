@@ -69,12 +69,12 @@
                                 <h3>Sign In</h3>
                             </div>
                             <div class="form-floating mb-3">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-                                <label for="email">{{ __('E-Mail Address') }}</label>
+                                <input id="name" type="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" required autofocus>
+                                <label for="name">{{ __('Username') }}</label>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('name'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('email') }}</strong>
+                                    <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                                 @endif
                             </div>

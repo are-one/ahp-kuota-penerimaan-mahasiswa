@@ -63,14 +63,12 @@
                                 <input type="text" class="form-control" name="kode_prodi" value="{{$prodi->kode_prodi}}" readonly>
                             </div>
                         </div>
-                        @foreach ($kriteria as $krt)
                         <div class="row col-md-12">
-                            <label class="col-md-4 col-form-label text-md-right mb-3">{{$krt->nama_kriteria}}</label>
+                            <label class="col-md-4 col-form-label text-md-right mb-3">nama</label>
                             <div class="col-md-8">
                                 {{ Form::select('kriteria_id', null,['class'=>'form-control'])}}
                             </div>
                         </div>
-                        @endforeach
                         <div class="row col-md-12">
                             <label class="col-md-4 col-form-label text-md-right mb-3">Nilai</label>
                             <div class="col-md-8">

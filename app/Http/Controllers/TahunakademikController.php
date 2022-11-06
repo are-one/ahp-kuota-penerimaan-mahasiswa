@@ -55,8 +55,8 @@ class TahunakademikController extends Controller
     public function update(Request $request, $id_tahun)
     {
         $request->validate([
-            'id_tahun' => 'required|unique:tahun|min:4',
-            'tahun_akademik' => 'required|unique:tahun|min:4'
+            'id_tahun' => 'required|min:4',
+            'tahun_akademik' => 'required|min:4'
         ]);
 
 
