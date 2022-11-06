@@ -31,9 +31,9 @@
     <link href="/admin/css/style.css" rel="stylesheet" />
 
     <style>
-        body {
+        .bg-login {
             background-size: cover;
-            background-image: url('../img/awan2.jpg');
+            background-image: url('{{ url('/') }}/images/bg_uho.jpg');
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -58,8 +58,8 @@
         <!-- Spinner End -->
 
         <!-- Sign In Start -->
-        <div class="container-fluid">
-            <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh">
+        <div class="container-fluid bg-login">
+            <div class=" row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
                     <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
                         <form method="POST" action="{{ route('postlogin') }}" aria-label="{{ __('Login') }}">
