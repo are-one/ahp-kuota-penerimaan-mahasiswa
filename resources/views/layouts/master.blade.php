@@ -47,7 +47,7 @@
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
-                <a href="index.html" class="navbar-brand mx-4 mb-3">
+                <a href="/home" class="navbar-brand mx-4 mb-3">
                     <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>SPK</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
@@ -56,8 +56,7 @@
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-
-                        <h6 class="mb-0">Admin</h6>
+                        <h6 class="mb-0">{{ __('Admin') }}</h6>
                         <span>Online</span>
                     </div>
                 </div>
@@ -81,7 +80,7 @@
             <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
                 <a href="#" class="sidebar-toggler flex-shrink-0" style="width: 40px; height: 40px;">
                     <i class="fas fa-bars"></i>
-                </a> 
+                </a>
 
 
                 <div class="navbar-nav align-items-center ms-auto">

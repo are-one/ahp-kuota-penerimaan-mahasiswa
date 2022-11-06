@@ -52,6 +52,7 @@ class KriteriaController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+
             'id' => 'required|min:1',
             'nama_kriteria' => 'required|min:3'
         ]);

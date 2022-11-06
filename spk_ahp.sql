@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2022 at 03:20 AM
+-- Generation Time: Nov 06, 2022 at 06:55 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -30,32 +30,20 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `kriteria` (
   `id` int(11) NOT NULL,
-  `nama_kriteria` varchar(100) NOT NULL,
-  `nilai_prioritas` int(11) DEFAULT NULL
+  `nama_kriteria` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `kriteria`
 --
 
-INSERT INTO `kriteria` (`id`, `nama_kriteria`, `nilai_prioritas`) VALUES
-(1, 'Kapasitas Ruangan', NULL),
-(2, 'Jumlah Ruangan', NULL),
-(3, 'Dosen Aktif', NULL),
-(4, 'Mahasiswa Tingkat Akhir', NULL),
-(5, 'Mahasiswa Aktif', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `migrations`
---
-
-CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO `kriteria` (`id`, `nama_kriteria`) VALUES
+(1, 'Kapasitas Ruangan'),
+(2, 'Jumlah Ruangan'),
+(3, 'Dosen Aktif'),
+(4, 'Mahasiswa Tingkat Akhir'),
+(5, 'Mahasiswa Aktif'),
+(6, 'Mahasiswa Pasif sekali');
 
 -- --------------------------------------------------------
 
@@ -64,12 +52,33 @@ CREATE TABLE `migrations` (
 --
 
 CREATE TABLE `nilai_perbandingan` (
-  `prodi_kode_prodi` varchar(10) NOT NULL,
+  `kode_prodi` varchar(10) NOT NULL,
   `kriteria_id` int(11) NOT NULL,
   `tahun_id` varchar(5) NOT NULL,
   `nilai` float(4,2) DEFAULT NULL,
   `kriteria_id1` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `nilai_perbandingan`
+--
+
+INSERT INTO `nilai_perbandingan` (`kode_prodi`, `kriteria_id`, `tahun_id`, `nilai`, `kriteria_id1`) VALUES
+('F1A1', 1, '2018', 2.00, 2),
+('F1A1', 1, '2018', 2.00, 3),
+('F1A1', 1, '2018', 4.00, 4),
+('F1A1', 1, '2018', 4.00, 5),
+('F1A1', 1, '2018', 3.00, 6),
+('F1A1', 2, '2018', 3.00, 3),
+('F1A1', 2, '2018', 3.00, 4),
+('F1A1', 2, '2018', 3.00, 5),
+('F1A1', 2, '2018', 3.00, 6),
+('F1A1', 3, '2018', 3.00, 4),
+('F1A1', 3, '2018', 3.00, 5),
+('F1A1', 3, '2018', 3.00, 6),
+('F1A1', 4, '2018', 3.00, 5),
+('F1A1', 4, '2018', 3.00, 6),
+('F1A1', 5, '2018', 3.00, 6);
 
 -- --------------------------------------------------------
 
@@ -89,8 +98,7 @@ CREATE TABLE `prodi` (
 INSERT INTO `prodi` (`kode_prodi`, `nama_prodi`) VALUES
 ('F1A1', 'STATISTIKA'),
 ('F1A2', 'MATEMATIKA'),
-('F1A3', 'ILMU KOMPUTER'),
-('F1C1', 'KIMIA K');
+('F1A3', 'ILMU KOMPUTER');
 
 -- --------------------------------------------------------
 
@@ -102,8 +110,20 @@ CREATE TABLE `prodi_has_kriteria` (
   `kode_prodi` varchar(10) NOT NULL,
   `kriteria_id` int(11) NOT NULL,
   `nilai` int(11) DEFAULT NULL,
-  `tahun_id_tahun` varchar(5) NOT NULL
+  `tahun_id` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `prodi_has_kriteria`
+--
+
+INSERT INTO `prodi_has_kriteria` (`kode_prodi`, `kriteria_id`, `nilai`, `tahun_id`) VALUES
+('F1A1', 1, 1, '2018'),
+('F1A1', 2, 0, '2018'),
+('F1A1', 3, 0, '2018'),
+('F1A1', 4, 0, '2018'),
+('F1A1', 5, 0, '2018'),
+('F1A1', 6, 0, '2018');
 
 -- --------------------------------------------------------
 
@@ -121,9 +141,8 @@ CREATE TABLE `tahun` (
 --
 
 INSERT INTO `tahun` (`id_tahun`, `tahun_akademik`) VALUES
-('2030', '20181'),
-('2022', '20221'),
-('2023', '20222');
+('2018', '20182'),
+('2022', '20221');
 
 -- --------------------------------------------------------
 
@@ -146,7 +165,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 'admin', 'administration@gmail.com', '$2y$10$CUGOPparpM4I9b8GJaSdMuU3mLvO2UpNAUkzMLiAELbgXbBHjm1G2', 'ksxAM1Q4c2qFZmKJLjp1Bn7xQSEUfTgehlyttejdezl3TkofeEHH6NmYa5tM', '2022-10-29 23:02:46', '2022-10-29 23:02:46');
+(2, 'admin', 'administration@gmail.com', '$2y$10$CUGOPparpM4I9b8GJaSdMuU3mLvO2UpNAUkzMLiAELbgXbBHjm1G2', 'evg6w4Ttj4ZmPGmWoB7QsvROOdU4zfCCZXsYlEWiz8UpFeFt32EhyFX3V9jK', '2022-10-29 23:02:46', '2022-10-29 23:02:46');
 
 --
 -- Indexes for dumped tables
@@ -159,18 +178,12 @@ ALTER TABLE `kriteria`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `nilai_perbandingan`
 --
 ALTER TABLE `nilai_perbandingan`
-  ADD PRIMARY KEY (`prodi_kode_prodi`,`kriteria_id`,`tahun_id`,`kriteria_id1`),
+  ADD PRIMARY KEY (`kriteria_id`,`tahun_id`,`kriteria_id1`,`kode_prodi`),
   ADD KEY `fk_prodi_has_kriteria1_kriteria1_idx` (`kriteria_id`),
-  ADD KEY `fk_prodi_has_kriteria1_prodi1_idx` (`prodi_kode_prodi`),
+  ADD KEY `fk_prodi_has_kriteria1_prodi1_idx` (`kode_prodi`),
   ADD KEY `fk_nilai_perbandingan_tahun1_idx` (`tahun_id`),
   ADD KEY `fk_nilai_perbandingan_kriteria1_idx` (`kriteria_id1`);
 
@@ -184,10 +197,10 @@ ALTER TABLE `prodi`
 -- Indexes for table `prodi_has_kriteria`
 --
 ALTER TABLE `prodi_has_kriteria`
-  ADD PRIMARY KEY (`kode_prodi`,`kriteria_id`,`tahun_id_tahun`),
+  ADD PRIMARY KEY (`kode_prodi`,`kriteria_id`,`tahun_id`),
   ADD KEY `fk_prodi_has_kriteria_kriteria1_idx` (`kriteria_id`),
   ADD KEY `fk_prodi_has_kriteria_prodi1_idx` (`kode_prodi`),
-  ADD KEY `fk_prodi_has_kriteria_tahun1_idx` (`tahun_id_tahun`);
+  ADD KEY `fk_prodi_has_kriteria_tahun1_idx` (`tahun_id`);
 
 --
 -- Indexes for table `tahun`
@@ -195,16 +208,6 @@ ALTER TABLE `prodi_has_kriteria`
 ALTER TABLE `tahun`
   ADD PRIMARY KEY (`id_tahun`),
   ADD UNIQUE KEY `tahun_akademik_UNIQUE` (`tahun_akademik`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -217,7 +220,7 @@ ALTER TABLE `nilai_perbandingan`
   ADD CONSTRAINT `fk_nilai_perbandingan_kriteria1` FOREIGN KEY (`kriteria_id1`) REFERENCES `kriteria` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_nilai_perbandingan_tahun1` FOREIGN KEY (`tahun_id`) REFERENCES `tahun` (`id_tahun`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_prodi_has_kriteria1_kriteria1` FOREIGN KEY (`kriteria_id`) REFERENCES `kriteria` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_prodi_has_kriteria1_prodi1` FOREIGN KEY (`prodi_kode_prodi`) REFERENCES `prodi` (`kode_prodi`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_prodi_has_kriteria1_prodi1` FOREIGN KEY (`kode_prodi`) REFERENCES `prodi` (`kode_prodi`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `prodi_has_kriteria`
@@ -225,7 +228,7 @@ ALTER TABLE `nilai_perbandingan`
 ALTER TABLE `prodi_has_kriteria`
   ADD CONSTRAINT `fk_prodi_has_kriteria_kriteria1` FOREIGN KEY (`kriteria_id`) REFERENCES `kriteria` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_prodi_has_kriteria_prodi1` FOREIGN KEY (`kode_prodi`) REFERENCES `prodi` (`kode_prodi`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_prodi_has_kriteria_tahun1` FOREIGN KEY (`tahun_id_tahun`) REFERENCES `tahun` (`id_tahun`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_prodi_has_kriteria_tahun1` FOREIGN KEY (`tahun_id`) REFERENCES `tahun` (`id_tahun`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

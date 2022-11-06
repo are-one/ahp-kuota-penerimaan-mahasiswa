@@ -13,7 +13,7 @@ class LoginController extends Controller
 
         // validasi data
         $this->validate($request, [
-            'name'   => 'required|min:2',
+            'name'   => 'required|min:1',
             'password' => 'required|min:6'
         ]);
 
