@@ -79,37 +79,12 @@
 
                         @foreach($kriteria as $id => $nama_kriteria)
                         <div class="row col-md-12">
-<<<<<<< HEAD
-                            <label class="col-md-4 col-form-label text-md-right mb-3">Nama Prodi</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" name="kode_prodi" value="{{$prodi->kode_prodi}}" readonly>
-                            </div>
-                        </div>
-                        <div class="row col-md-12">
-                            <label class="col-md-4 col-form-label text-md-right mb-3">nama</label>
-=======
                             <label class="col-md-4 col-form-label text-md-right mb-3">{{$nama_kriteria}}</label>
->>>>>>> d27c8f2e49c0eb9f711d34bc855c2a5ac966be6a
                             <div class="col-md-8">
                                 {{ Form::number($id, (isset($prodi_has_kriteria[$id])? $prodi_has_kriteria[$id] : 0),['class'=>'form-control'])}}
                             </div>
                         </div>
-<<<<<<< HEAD
-                        <div class="row col-md-12">
-                            <label class="col-md-4 col-form-label text-md-right mb-3">Nilai</label>
-                            <div class="col-md-8">
-                                {{ Form::number('nilai', null,['class'=>'form-control', 'placeholder' => 'Inputkan Nilai'])}}
-                            </div>
-                        </div>
-                        <div class="row col-md-12">
-                            <label class="col-md-4 col-form-label text-md-right mb-3">Tahun Akademik</label>
-                            <div class="col-md-8">
-                                {{ Form::select('tahun_id_tahun', $tahun, null,['class'=>'form-control'])}}
-                            </div>
-                        </div>
-=======
                         @endforeach
->>>>>>> d27c8f2e49c0eb9f711d34bc855c2a5ac966be6a
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Close</button>

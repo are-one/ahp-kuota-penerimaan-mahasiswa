@@ -22,7 +22,7 @@ class HasilpenilaianController extends Controller
 
         $dataSubKriteria = [];
 
-        $kriteriaProdi = prodi::find($kode_prodi)->prodiHasKriterias()->where('tahun_id', $id_tahun)->pluck('kode_prodi',)
+        $kriteriaProdi = prodi::find($kode_prodi)->prodiHasKriterias()->where('tahun_id', $id_tahun);
         
         return view('hasil.index',[
             'dataProdi' => $dataProdi,
