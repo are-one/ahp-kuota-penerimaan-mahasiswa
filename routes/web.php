@@ -20,8 +20,8 @@ Route::get('/logout', 'LoginController@logout')->name('logout');
 
 Route::group(['middleware' => ['auth:web']], function () {
 
-    Route::get('/', function () {
-        return view('welcome');
+    Route::get('/home', function () {
+        return view('home');
     });
 
     Route::get('/tahun_akademik/json', 'TahunakademikController@json');

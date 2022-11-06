@@ -62,19 +62,12 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-40">
-                    <a href="/" class="nav-item nav-link"><i class="fa fa-home me-2"></i>Home</a>
+                    <a href="/home" class="nav-item nav-link"><i class="fa fa-home me-2"></i>Home</a>
                     <a href="/prodi" class="nav-item nav-link"><i class="fa fa-laptop me-2"></i>Data Prodi</a>
                     <a href="/kriteria" class="nav-item nav-link"><i class="fas fa-hotel me-2"></i>Kriteria</a>
                     <a href="/tahun_akademik" class="nav-item nav-link"><i class="fa fa-calendar me-2"></i>Tahun Akademik</a>
                     <a href="/pembobotan" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Data Bobot</a>
                     <a href="/hasil_penilaian" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Hasil Penilaian</a>
-                    <a href="{{ route('logout') }}" class="nav-item nav-link" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-                        <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
-                        <form id="logout-form" action="{{ route('logout') }}" style="display: none;">
-                            @csrf
-                        </form>
-                    </a>
 
                 </div>
             </nav>

@@ -7,18 +7,18 @@ use Auth;
 
 class LoginController extends Controller
 {
-    
+
     public function postlogin(Request $request)
     {
 
         // validasi data
         $this->validate($request, [
-            'email'   => 'required|email',
+            'name'   => 'required|min:2',
             'password' => 'required|min:6'
         ]);
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-            return redirect()->intended('/');
+        if (Auth::attempt(['name' => $request->name, 'password' => $request->password], $request->remember)) {
+            return redirect()->intended('/home')->with('status', 'Anda Berhasil Login');
         }
         return redirect('/login');
     }

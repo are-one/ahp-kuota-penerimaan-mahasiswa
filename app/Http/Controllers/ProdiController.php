@@ -60,6 +60,18 @@ class ProdiController extends Controller
 
     public function show($id)
     {
+<<<<<<< HEAD
+
+        $prioritas = [
+            'K01' => 0,
+        ];
+        $kriteria1 = Kriteria::all();
+        $kriteria['kriteria'] = Kriteria::pluck('nama_kriteria', 'id');
+        $data['tahun'] = Tahunakademik::pluck('tahun_akademik', 'id_tahun');
+        $data['prodi'] = prodi::where('kode_prodi', $id)->first();
+        // ambil data dari tabel prodi has kriteria filter bedasarkan prodi
+        return view('prodi.detail', ['prioritas' => $prioritas, 'kriteria' => $kriteria, 'kriteria1' => $kriteria1], $data);
+=======
         $id_tahun = Input::get('id_tahun', 0);
         $tahun = Tahunakademik::where('id_tahun', $id_tahun)->first();
 
@@ -83,6 +95,7 @@ class ProdiController extends Controller
         $data['prodi'] = prodi::where('kode_prodi', $id)->first();
 
         return view('prodi.detail', ['kriteria' => $kriteria, 'kriteria1' => $kriteria1, 'id_tahun' => $id_tahun], $data);
+>>>>>>> d27c8f2e49c0eb9f711d34bc855c2a5ac966be6a
     }
 
 
