@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\NilaiPerbandingan;
 use App\Tahunakademik;
 use Illuminate\Http\Request;
 use DataTables;
@@ -68,6 +69,10 @@ class TahunakademikController extends Controller
     public function destroy($id_tahun)
     {
         $Tahun = Tahunakademik::where('id_tahun', $id_tahun);
+
+        $nilai_perbandingan_tahun = NilaiPerbandingan::where('tahun_id', $id_tahun);
+
+        $nilai_perbandingan_tahun->delete();
         $Tahun->delete();
         return redirect('/tahun_akademik')->with('status', 'Data Tahun Akademik Berhasil Dihapus');
     }

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\prodi;
 use App\Tahunakademik;
 use App\Kriteria;
+use App\NilaiPerbandingan;
+use App\prodihaskriteria;
 use DataTables;
 
 
@@ -66,6 +68,15 @@ class KriteriaController extends Controller
     public function destroy($id)
     {
         $kriteria = Kriteria::where('id', $id);
+
+        $prodi_has_kriteria = prodihaskriteria::where('kriteria_id', $id);
+        $nilai_perbandingan_kriteria = NilaiPerbandingan::where('kriteria_id', $id);
+        $nilai_perbandingan_kriteria1 = NilaiPerbandingan::where('kriteria_id1', $id);
+        
+        $prodi_has_kriteria->delete();
+        $nilai_perbandingan_kriteria->delete();
+        $nilai_perbandingan_kriteria1->delete();
+
         $kriteria->delete();
         return redirect('/kriteria')->with('status', 'Data Kriteria Berhasil Dihapus');
     }

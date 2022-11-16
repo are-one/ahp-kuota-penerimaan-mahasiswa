@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Kriteria;
+use App\NilaiPerbandingan;
 use Illuminate\Http\Request;
 use App\prodi;
 use App\prodihaskriteria;
@@ -102,6 +103,13 @@ class ProdiController extends Controller
     public function destroy($kode_prodi)
     {
         $prodi = prodi::where('kode_prodi', $kode_prodi);
+
+        $prodi_has_kriteria = prodihaskriteria::where('kode_prodi', $kode_prodi);
+        $nilai_perbandingan_prodi = NilaiPerbandingan::where('kode_prodi', $kode_prodi);
+        
+        $prodi_has_kriteria->delete();
+        $nilai_perbandingan_prodi->delete();
+
         $prodi->delete();
         return redirect('/prodi')->with('status', 'Data Prodi Berhasil Dihapus');
     }
