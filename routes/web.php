@@ -42,5 +42,6 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::post('/pembobotan', 'BobotController@index');
     Route::get('/hasil_penilaian', 'HasilpenilaianController@index');
     Route::post('/hasil_penilaian', 'HasilpenilaianController@index');
+    Route::get('/cetak-hasil/{tahun?}', 'HasilpenilaianController@cetak_hasil');
     Route::post('simpandata', 'ProdiController@simpandata')->name('simpandata');
 });

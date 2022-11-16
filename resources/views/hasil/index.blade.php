@@ -22,7 +22,7 @@
             
                     <div class="col">
                         <select name="id_tahun" class="form-select">
-                            <option value="">Pilih Prodi ...</option>
+                            <option value="">Pilih tahun akademik ...</option>
                             @foreach ($dataTahun as $tahun)
                                 <option value="{{$tahun->id_tahun}}" {{ ($tahun->id_tahun == $id_tahun)? 'selected' : '' }}>{{$tahun->tahun_akademik}}</option>
                             @endforeach
@@ -89,7 +89,7 @@
                 <form action="" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-md btn-primary"><i class="fas fa-file-archive"></i> Proses</button>
-                    <button type="submit" class="btn btn-md btn-danger"><i class="fas fa-print"></i> Cetak</button>
+                    <a href="{{ url("/cetak-hasil/{$id_tahun}") }}" class="btn btn-md btn-danger"><i class="fas fa-print"></i> Cetak</a>
                 </form>
                 
             </div>

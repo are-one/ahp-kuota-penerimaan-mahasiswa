@@ -7,6 +7,7 @@ use App\prodi;
 use App\prodihaskriteria;
 use App\Tahunakademik;
 use AreOne\Ahp\Ahp;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -116,5 +117,43 @@ class HasilpenilaianController extends Controller
         }
 
         return $hasil;
+    }
+
+    public function cetak_hasil($tahun = 0)
+    {
+        $id_tahun = $tahun;
+        
+        $dataProdi = prodi::all();
+        $dataTahun = Tahunakademik::all();
+
+        $dataKriteria = Kriteria::all();
+
+        $dataSubKriteria = [];
+
+        $prodiHasKriteria = prodihaskriteria::where('tahun_id',$id_tahun)->get();
+        $tahun = Tahunakademik::where('id_tahun', $id_tahun)->first();
+
+        $nilaiKriteria = [];
+        if($prodiHasKriteria != null && $tahun != null){
+            foreach ($prodiHasKriteria as $i => $data) {
+                $nilaiKriteria[$data->kode_prodi][$data->kriteria_id] = $data->nilai;
+            }
+        }
+        
+        $keputusan = [];
+        if ($tahun != null && $dataProdi != null) {
+            $keputusan = $this->proses($tahun, $dataProdi);
+        }
+        
+
+        $pdf = PDF::loadView('hasil.cetak', [
+            'dataProdi' => $dataProdi,
+            'dataTahun' => $dataTahun,
+            'dataKriteria' => $dataKriteria,
+            'id_tahun' => $id_tahun,
+            'nilaiKriteria' => $nilaiKriteria,
+            'keputusan' => $keputusan,
+        ]);
+        return $pdf->stream('invoice.pdf');
     }
 }
