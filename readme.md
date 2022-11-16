@@ -31,6 +31,10 @@ or
 ```
 php artisan serve --port=8080
 ```
+##
+<center>
+    <img src="https://github.com/are-one/ahp-kuota-penerimaan-mahasiswa/blob/main/public/images/tampilan-spk-ahp.jpeg">
+</center>
 ## AHP Library
 
 - [are-one AHP Library For PHP](https://github.com/are-one/ahp).
