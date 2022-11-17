@@ -46,6 +46,8 @@ class HasilpenilaianController extends Controller
             $keputusan = $this->proses($tahun, $dataProdi);
         }
 
+        // print_r($keputusan);die;
+
         return view('hasil.index',[
             'dataProdi' => $dataProdi,
             'dataTahun' => $dataTahun,
@@ -80,7 +82,8 @@ class HasilpenilaianController extends Controller
 
             $modelAhp = new Ahp($kriteria, []);
         
-            $matriks = ($modelAhp->generate_matriks_perbandingan_berpasangan());
+            $modelAhp->generate_matriks_perbandingan_berpasangan();
+            $matriks = [];
             $total_kolom = [];
 
             $prioritas_matriks_kriteria = [];
@@ -93,6 +96,8 @@ class HasilpenilaianController extends Controller
                 }
             }
 
+            $matriks = (count($matriks) > 0)? $matriks : $modelAhp->matriks;
+            
             $matriks_perbandingan = $modelAhp->set_nilai_matriks_perbadingan_berpasanagan($matriks);
 
             $matriks = $matriks_perbandingan['matriks'];
